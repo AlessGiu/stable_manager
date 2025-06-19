@@ -1,0 +1,69 @@
+<odoo>
+    <data>
+
+        <!-- List View -->
+        <record id="farrier_list_view" model="ir.ui.view">
+            <field name="name">stable_farrier_list</field>
+            <field name="model">stable.farrier</field>
+            <field name="arch" type="xml">
+                <list string="Farrier Visits">
+                    <field name="horse_id"/>
+                    <field name="farrier_name"/>
+                    <field name="visit_date"/>
+                    <field name="hoof_condition"/>
+                    <field name="shoe_type"/>
+                    <field name="next_visit"/>
+                    <field name="report_filename"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="farrier_form_view" model="ir.ui.view">
+            <field name="name">stable_farrier_form</field>
+            <field name="model">stable.farrier</field>
+            <field name="arch" type="xml">
+                <form string="Farrier Visit">
+                    <sheet>
+                        <group>
+                            <field name="horse_id"/>
+                            <field name="farrier_name"/>
+                            <field name="farrier_contact"/>
+                            <field name="visit_date"/>
+                            <field name="hoof_condition"/>
+                            <field name="shoe_type"/>
+                        </group>
+                        <group>
+                            <field name="reason"/>
+                            <field name="findings"/>
+                            <field name="work_done"/>
+                            <field name="recommendations"/>
+                        </group>
+                        <group>
+                            <field name="materials_used"/>
+                            <field name="shoe_size"/>
+                            <field name="next_visit"/>
+                            <field name="report"/>
+                            <field name="report_filename"/>
+                            <field name="notes"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="open_view_farrier_visits" model="ir.actions.act_window">
+            <field name="name">Farrier Visits</field>
+            <field name="res_model">stable.farrier</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <!-- Menu Item -->
+        <menuitem name="Farrier Follow-Up"
+                  id="stable_manager_menu_view_farrier_visits"
+                  parent="menu_health"
+                  action="open_view_farrier_visits"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,98 @@
+<odoo>
+    <data>
+
+        <!-- List View -->
+        <record id="veterinary_list_view" model="ir.ui.view">
+            <field name="name">stable_veterinary_list</field>
+            <field name="model">stable.veterinary</field>
+            <field name="arch" type="xml">
+                <list string="Veterinary Visits">
+                    <field name="horse_id"/>
+                    <field name="visit_date"/>
+                    <field name="vet_name"/>
+                    <field name="findings"/>
+                    <field name="exams_done"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="veterinary_form_view" model="ir.ui.view">
+            <field name="name">stable_veterinary_form</field>
+            <field name="model">stable.veterinary</field>
+            <field name="arch" type="xml">
+                <form string="Veterinary Visit">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="horse_id"/>
+                                <field name="visit_date"/>
+                                <field name="vet_name"/>
+                                <field name="vet_contact"/>
+                            </group>
+                            <group>
+                                <field name="clinic_name"/>
+                                <field name="clinic_address"/>
+                                <field name="hospitalization"/>
+                                <field name="surgery_required"/>
+                                <field name="surgery_done"/>
+                                <field name="surgery_date"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="Diagnosis">
+                                <field name="reason" placeholder="Reasons about the visit"/>
+                                <field name="findings" placeholder="What the vet found ?"/>
+                                <field name="diagnosis" placeholder="What's the diagnosis ?"/>
+                            </page>
+                            <page string="Treatment">
+                                <field name="treatment"/>
+                                <field name="recommendations"/>
+                            </page>
+                            <page string="Examinations">
+                                <group>
+                                    <field name="exams_done"/>
+                                    <field name="other_exams"/>
+                                </group>
+                                <group>
+                                    <field name="exam_results"/>
+                                    <field name="exam_filename"/>
+                                </group>
+                            </page>
+                            <page string="Administrative">
+                                <field name="cost"/>
+                                <field name="insurance_covered"/>
+                                <field name="report" filename="report_filename"/>
+                                <field name="invoice" filename="invoice_filename"/>
+                            </page>
+                        </notebook>
+
+                        <div class="oe_edit_only">
+                            <label for="next_visit"/>
+                            <div class="oe_inline">
+                                <field name="follow_up_required"/>
+                                <field name="next_visit"/>
+                            </div>
+                        </div>
+                        <field name="notes"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="open_view_veterinary_visits" model="ir.actions.act_window">
+            <field name="name">Veterinary Visits</field>
+            <field name="res_model">stable.veterinary</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <!-- Menu Item -->
+        <menuitem name="Veterinary Follow-Up"
+                  id="stable_manager_menu_view_veterinary_visits"
+                  parent="menu_health"
+                  action="open_view_veterinary_visits"/>
+
+    </data>
+</odoo>

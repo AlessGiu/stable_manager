@@ -1,0 +1,68 @@
+<odoo>
+    <data>
+
+        <!-- List view -->
+        <record id="health_list_view" model="ir.ui.view">
+            <field name="name">stable_health_list</field>
+            <field name="model">stable.health</field>
+            <field name="arch" type="xml">
+                <list string="Veterinary Follow-Up">
+                    <field name="vet_name"/>
+                    <field name="vet_contact"/>
+                    <field name="vet_clinic"/>
+                    <field name="last_examination"/>
+                    <field name="medical_history"/>
+                    <field name="type"/>
+                    <field name="vaccine_type"/>
+                    <field name="dewormer_product"/>
+                    <field name="dewormer_next_date"/>
+                    <field name="global_health"/>
+                    <field name="report"/>
+                    <field name="next_reminder"/>
+                    <field name="notes"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Form view -->
+        <record id="view_health_form" model="ir.ui.view">
+            <field name="name">stable_health_form</field>
+            <field name="model">stable.health</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="vet_name"/>
+                            <field name="vet_contact"/>
+                            <field name="vet_clinic"/>
+                            <field name="last_examination"/>
+                            <field name="medical_history"/>
+                            <field name="type"/>
+                            <field name="vaccine_type"/>
+                            <field name="dewormer_product"/>
+                            <field name="dewormer_next_date"/>
+                            <field name="global_health"/>
+                            <field name="report"/>
+                            <field name="next_reminder"/>
+                            <field name="notes"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="open_view_health" model="ir.actions.act_window">
+            <field name="name">Veterinary Follow-Up</field>
+            <field name="res_model">stable.health</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <!-- Menu item
+        <menuitem name="Veterinary Follow-Up"
+                  id="stable_manager_menu_view_veterinaire"
+                  parent="menu_health"
+                  action="open_view_health"/>
+                  -->
+    </data>
+</odoo>

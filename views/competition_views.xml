@@ -1,0 +1,73 @@
+<odoo>
+    <data>
+
+        <!-- Action -->
+        <record id="open_view_competition" model="ir.actions.act_window">
+            <field name="name">Competition</field>
+            <field name="res_model">stable.competition</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <!-- Parent menu -->
+        <menuitem name="Stable Management" id="menu_stable" sequence="10"/>
+
+        <!-- Menu item -->
+        <menuitem name="Competitions" id="stable_manager_menu_view_competition"
+                  parent="menu_stable" action="open_view_competition"/>
+
+        <!-- List view -->
+        <record id="competition_list_view" model="ir.ui.view">
+            <field name="name">stable_manager list</field>
+            <field name="model">stable.competition</field>
+            <field name="arch" type="xml">
+                <list string="Competitions">
+                    <field name="date"/>
+                    <field name="location"/>
+                    <field name="level"/>
+                    <field name="discipline"/>
+                    <field name="result"/>
+                    <field name="ranking"/>
+                    <field name="penalty_points"/>
+                    <field name="prize_money"/>
+                    <field name="time"/>
+                    <field name="emotion"/>
+                    <field name="performance_review"/>
+                    <field name="improvements"/>
+                    <field name="more_info"/>
+                    <field name="attachment_ids"/>
+                    <field name="horse_id"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Form view -->
+        <record id="view_competition_form" model="ir.ui.view">
+            <field name="name">stable_competition form</field>
+            <field name="model">stable.competition</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="date"/>
+                            <field name="location"/>
+                            <field name="level"/>
+                            <field name="discipline"/>
+                            <field name="result"/>
+                            <field name="ranking"/>
+                            <field name="penalty_points"/>
+                            <field name="prize_money"/>
+                            <field name="time"/>
+                            <field name="emotion"/>
+                            <field name="performance_review"/>
+                            <field name="improvements"/>
+                            <field name="more_info"/>
+                            <field name="attachment_ids"/>
+                            <field name="horse_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

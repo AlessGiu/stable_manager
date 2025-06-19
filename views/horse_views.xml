@@ -1,0 +1,165 @@
+<odoo>
+    <data>
+
+        <!-- List view: displays all horses with key identity fields -->
+        <record id="horse_list_view" model="ir.ui.view">
+            <field name="name">stable_horse_list</field>
+            <field name="model">stable.horse</field>
+            <field name="arch" type="xml">
+                <list string="All Horses">
+                    <field name="name" string="Name"/>
+                    <field name="sireno" string="SIRE No"/>
+                    <field name="birth_date" string="Birth Date"/>
+                    <field name="sexe" string="Sex"/>
+                    <field name="robe" string="Coat"/>
+                    <field name="taille" string="Height (cm)"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Form view: detailed horse profile with organized sections and tabs -->
+        <record id="view_horse_form" model="ir.ui.view">
+            <field name="name">stable_horse_form</field>
+            <field name="model">stable.horse</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+
+                        <!-- Ribbon: visually highlights horses in competition -->
+                        <widget name="web_ribbon"
+                                title="In Competition"
+                                bg_color="bg-primary"
+                                invisible="not in_competition"/>
+
+                        <!-- Title section: horse name as main heading -->
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Horse's name"/>
+                            </h1>
+                        </div>
+
+                        <!-- Main info: grouped in three columns for clarity -->
+                        <group col="3">
+                            <group string="Identity">
+                                <field name="sireno" placeholder="Official SIRE number"/>
+                                <field name="birth_date"/>
+                                <field name="age"/>
+                                <field name="sexe"/>
+                                <field name="race"/>
+                            </group>
+                            <group string="Physical Characteristics">
+                                <field name="robe"/>
+                                <field name="taille"/>
+                                <field name="poids"/>
+                                <field name="puce_elec"/>
+                            </group>
+                            <group string="Status and Boarding">
+                                <field name="type_pension"/>
+                                <field name="in_competition"/>
+                                <field name="competition_tags_ids" widget="many2many_tags"
+                                       placeholder="Is going in final?"/>
+                            </group>
+                        </group>
+
+                        <!-- Tabs: organize related records for easy access -->
+                        <notebook>
+                            <page string="Rations">
+                                <field name="ration_ids"/>
+                            </page>
+                            <page string="Competitions">
+                                <field name="competition_ids"/>
+                            </page>
+                            <page string="Vaccines">
+                                <field name="vaccins_ids"/>
+                            </page>
+                            <page string="Osteopath">
+                                <field name="osteopath_ids"/>
+                            </page>
+                            <page string="Dentist">
+                                <field name="dentist_ids"/>
+                            </page>
+                            <page string="Farrier">
+                                <field name="farrier_ids"/>
+                            </page>
+                            <page string="Veterinarian">
+                                <field name="veterinary_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <!-- Chatter: enables communication and activity tracking -->
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <!-- Kanban view: visual summary cards for each horse -->
+        <record id="view_kanban_stable_horse" model="ir.ui.view">
+            <field name="name">stable_horse_kanban</field>
+            <field name="model">stable.horse</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="o_kanban_card"
+                                 style="border: 1px solid #ccc; border-radius: 10px; padding: 12px; background: #fefefe;">
+                                <!-- Horse image for quick identification -->
+                                <div class="o_kanban_image" style="text-align: center; margin-bottom: 10px;">
+                                    <img t-att-src="kanban_image('stable.horse', 'image_1920', record.id.value)"
+                                         class="oe_kanban_avatar"
+                                         alt="Horse Image"
+                                         style="max-height: 80px; border-radius: 8px;"/>
+                                </div>
+                                <!-- Key details: name, coat, sex, height, birth date -->
+                                <div class="o_kanban_details" style="text-align: center;">
+                                    <strong style="font-size: 16px; color: #2C3E50;">
+                                        <field name="name"/>
+                                    </strong>
+                                    <div style="margin-top: 4px; font-size: 13px; color: #7f8c8d;">
+                                        <field name="robe"/>
+                                        •
+                                        <field name="sexe"/>
+                                    </div>
+                                    <div style="margin-top: 2px; font-size: 12px;">
+                                        Height:
+                                        <field name="taille"/>
+                                        cm
+                                    </div>
+                                    <div style="font-size: 12px;">
+                                        Born on:
+                                        <field name="birth_date"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Action: opens the horse management views -->
+        <record id="open_view_horses" model="ir.actions.act_window">
+            <field name="name">Horses</field>
+            <field name="res_model">stable.horse</field>
+            <field name="view_mode">kanban,list,form</field>
+        </record>
+
+        <!-- Main menu: access to horse management -->
+        <menuitem id="stable_manager_menu_view"
+                  name="Horses"
+                  parent="menu_stable"
+                  action="open_view_horses"/>
+
+        <!-- Health menu: parent for all health-related sections -->
+        <menuitem id="menu_health"
+                  name="Health"
+                  parent="menu_stable"
+                  sequence="20"/>
+
+        <!-- Root menu: stable management main entry point -->
+        <menuitem id="menu_stable"
+                  name="Stable Management"
+                  web_icon="stable_manager,static/description/icon.png"
+                  sequence="10"/>
+
+    </data>
+</odoo>
