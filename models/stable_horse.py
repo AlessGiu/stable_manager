@@ -55,6 +55,10 @@ class StableHorses(models.Model):
     image_1920 = fields.Image("Image", max_width=1920, max_height=1920)  # Horse photo
 
     in_competition = fields.Boolean("In Competition?", default=False, tracking=True)  # Competition status
+    competition_this_year = fields.Integer(
+        string="Competitions This Year",
+        compute='_compute_competition_this_year',
+    )
 
     # Linked records for health, feeding, and competitions
     competition_ids = fields.One2many('stable.competition', 'horse_id', string="Competition History")
@@ -86,3 +90,14 @@ class StableHorses(models.Model):
                 )
             else:
                 record.age = 0
+
+    def _compute_competition_this_year(self):
+        current_year=date.today().year
+        start_date= date(current_year, 1, 1)
+        today = date.today()
+        for horse in self:
+            horse.competition_this_year = self.env ['stable.competition'].search_count([
+                ('horse_id', '=', horse.id),
+                ('date', '>=', start_date),
+                ('date', '<=', today)
+            ])

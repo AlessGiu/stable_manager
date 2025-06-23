@@ -17,14 +17,47 @@
             </field>
         </record>
 
+        <!-- Search view: allows filtering horses by key attributes -->
+        <record id="horse_search_view" model="ir.ui.view">
+            <field name="name">stable.horse.search</field>
+            <field name="model">stable.horse</field>
+            <field name="arch" type="xml">
+                <search string="All Horses">
+                    <field name="name" string="Nom"/>
+                    <filter name="type_pension_work" string="Pension travail"
+                            domain="[('type_pension', '=', 'work')]"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_stable_competition_this_year" model="ir.actions.act_window">
+            <field name="name">Competitions this year</field>
+            <field name="res_model">stable.competition</field>
+            <field name="view_mode">list,form</field>
+            <field name="domain">[
+                ('horse_id', '=', active_id),
+                ]
+            </field>
+        </record>
+
         <!-- Form view: detailed horse profile with organized sections and tabs -->
         <record id="view_horse_form" model="ir.ui.view">
             <field name="name">stable_horse_form</field>
             <field name="model">stable.horse</field>
             <field name="arch" type="xml">
                 <form>
-                    <sheet>
 
+                    <header>
+                        <button name="%(action_stable_competition_this_year)d"
+                                type="action"
+                                class="oe_stat_button"
+                                icon="fa-trophy">
+                            <field name="competition_this_year"
+                                   widget="statinfo"
+                                   string="competition(s) this year"/>
+                        </button>
+                    </header>
+                    <sheet>
                         <!-- Ribbon: visually highlights horses in competition -->
                         <widget name="web_ribbon"
                                 title="In Competition"
@@ -47,6 +80,7 @@
                                 <field name="sexe"/>
                                 <field name="race"/>
                             </group>
+                            <!-- Health and Medical: includes health records and medical history -->
                             <group string="Physical Characteristics">
                                 <field name="robe"/>
                                 <field name="taille"/>
@@ -143,6 +177,7 @@
             <field name="res_model">stable.horse</field>
             <field name="view_mode">kanban,list,form</field>
         </record>
+
 
         <!-- Root menu: stable management main entry point -->
         <menuitem id="menu_stable"
