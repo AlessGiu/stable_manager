@@ -1,7 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_stable_horse,access_stable_horse,model_stable_horse,,1,1,1,1
 access_stable_health,access_stable_health,model_stable_health,,1,1,1,1
-access_stable_ration,access_stable_ration,model_stable_ration,,1,1,1,1
 access_stable_stock,access_stable_stock,model_stable_stock,,1,1,1,1
 access_stable_competition,access_stable_competition,model_stable_competition,,1,1,1,1
 access_stable_vaccins,access_stable_vaccins,model_stable_vaccins,,1,1,1,1

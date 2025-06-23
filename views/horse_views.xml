@@ -64,8 +64,9 @@
                         <!-- Tabs: organize related records for easy access -->
                         <notebook>
                             <page string="Rations">
-                                <field name="ration_ids"/>
+                                <field name="ration_mrp_ids"/>
                             </page>
+
                             <page string="Competitions">
                                 <field name="competition_ids"/>
                             </page>
@@ -143,6 +144,12 @@
             <field name="view_mode">kanban,list,form</field>
         </record>
 
+        <!-- Root menu: stable management main entry point -->
+        <menuitem id="menu_stable"
+                  name="Stable Management"
+                  web_icon="stable_manager,static/description/icon.png"
+                  sequence="10"/>
+
         <!-- Main menu: access to horse management -->
         <menuitem id="stable_manager_menu_view"
                   name="Horses"
@@ -155,11 +162,6 @@
                   parent="menu_stable"
                   sequence="20"/>
 
-        <!-- Root menu: stable management main entry point -->
-        <menuitem id="menu_stable"
-                  name="Stable Management"
-                  web_icon="stable_manager,static/description/icon.png"
-                  sequence="10"/>
 
     </data>
 </odoo>

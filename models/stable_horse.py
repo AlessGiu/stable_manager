@@ -51,12 +51,12 @@ class StableHorses(models.Model):
         string="Microchipped",
         help="Indicates whether the horse has an electronic chip."
     )
+
     image_1920 = fields.Image("Image", max_width=1920, max_height=1920)  # Horse photo
 
     in_competition = fields.Boolean("In Competition?", default=False, tracking=True)  # Competition status
 
     # Linked records for health, feeding, and competitions
-    ration_ids = fields.One2many('stable.ration', 'horse_id', string='Rations')
     competition_ids = fields.One2many('stable.competition', 'horse_id', string="Competition History")
     vaccins_ids = fields.One2many('stable.vaccins', 'horse_id', string="Vaccination Records")
     osteopath_ids = fields.One2many('stable.osteopath', 'horse_id', string="Osteopath Visits")
@@ -68,6 +68,11 @@ class StableHorses(models.Model):
         'stable.horse.tag',
         string="Competition Tags",
         help="Tags associated with the horse for competition purposes."
+    )
+
+    ration_mrp_ids = fields.Many2many(
+        'mrp.production',
+        string="Rations MRP"
     )
 
     @api.depends('birth_date')
