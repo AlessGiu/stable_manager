@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="horse_report_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2 style="text-align: center;">🐴 Fiche du cheval :
+                            <t t-esc="o.name"/>
+                        </h2>
+                        <br/>
+
+                        <!-- IMAGE DU CHEVAL -->
+                        <div style="text-align: center; margin-bottom: 20px;">
+                            <img t-if="o.image_1920" t-att-src="'data:image/png;base64,%s' % o.image_1920"
+                                 style="max-height: 200px;"/>
+                            <p t-if="not o.image_1920">
+                                <i>Aucune image disponible</i>
+                            </p>
+                        </div>
+
+                        <!-- INFOS IDENTITÉ -->
+                        <table class="table table-sm" style="width: 100%;">
+                            <tbody>
+                                <tr>
+                                    <th style="width: 30%;">SIRE NO</th>
+                                    <td>
+                                        <t t-esc="o.sireno"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Sexe</th>
+                                    <td>
+                                        <t t-esc="o.sexe"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Robe</th>
+                                    <td>
+                                        <t t-esc="o.robe"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Race</th>
+                                    <td>
+                                        <t t-esc="o.race"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Date de naissance</th>
+                                    <td>
+                                        <t t-esc="o.birth_date"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Âge</th>
+                                    <td>
+                                        <t t-esc="o.age"/>
+                                        ans
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- INFOS PHYSIQUES -->
+                        <h4>Caractéristiques physiques</h4>
+                        <table class="table table-sm" style="width: 100%;">
+                            <tbody>
+                                <tr>
+                                    <th>Taille</th>
+                                    <td>
+                                        <t t-esc="o.taille"/>
+                                        cm
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Poids</th>
+                                    <td>
+                                        <t t-esc="o.poids"/>
+                                        kg
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Puce électronique</th>
+                                    <td>
+                                        <t t-if="o.puce_elec">✅ Oui</t>
+                                        <t t-if="not o.puce_elec">❌ Non</t>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- COMPÉTITION -->
+                        <h4>Compétition</h4>
+                        <table class="table table-sm" style="width: 100%;">
+                            <tbody>
+                                <tr>
+                                    <th>En compétition</th>
+                                    <td>
+                                        <t t-if="o.in_competition">✅ Oui</t>
+                                        <t t-if="not o.in_competition">❌ Non</t>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Compétitions cette année</th>
+                                    <td>
+                                        <t t-esc="o.competition_this_year"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- TYPE DE PENSION -->
+                        <h4>Type de pension</h4>
+                        <p>
+                            <t t-esc="o.type_pension"/>
+                        </p>
+
+                        <!-- TEST MANY2MANY -->
+                        <h4>Visites vétérinaires</h4>
+                        <t t-foreach="o.veterinary_ids" t-as="vet">
+                            <p>
+                                <strong>Vétérinaire :</strong>
+                                <t t-esc="vet.vet_name"/>
+                                <br/>
+                                <strong>Date :</strong>
+                                <t t-esc="vet.visit_date"/>
+                                <br/>
+                                <strong>Notes :</strong>
+                                <t t-esc="vet.notes"/>
+                            </p>
+                        </t>
+                        <p>
+                            <t t-esc="o.type_pension"/>
+                        </p>
+
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
