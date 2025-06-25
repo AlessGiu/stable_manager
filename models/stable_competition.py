@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class StableCompetition(models.Model):
@@ -58,3 +58,14 @@ class StableCompetition(models.Model):
 
     # Link to the horse that participated in the competition
     horse_id = fields.Many2one('stable.horse', string="Horse", required=True)
+
+
+    # chatter message when a new competition is created
+    @api.model
+    def create(self, vals):
+        competition = super().create(vals)
+
+        if competition.horse_id:
+            competition.horse_id.message_post(
+                body=f"New competition added: {competition.location} on {competition.date}. Result: {competition.result or 'N/A'}",)
+        return competition

@@ -19,17 +19,21 @@
     'depends': ['base', 'mail', 'stock', 'mrp'],
 
     'data': [
+        'security/ir.model.access.csv',
+
+        'views/reports/horse_report.xml',
+        'reports/report.xml',
+
         'views/horse_views.xml',
         'views/competition_views.xml',
-        # 'views/stock_views.xml',
         'views/health_views.xml',
         'views/stable_view_vaccins.xml',
         'views/stable_view_osteopath.xml',
         'views/stable_view_dentist.xml',
         'views/stable_view_farrier.xml',
         'views/stable_view_veterinary.xml',
-        'security/ir.model.access.csv', ],
-    # 'images': ['static/description/banner.png'],
+
+    ],
     'license': 'LGPL-3',
     'installable': True,
     'application': True,

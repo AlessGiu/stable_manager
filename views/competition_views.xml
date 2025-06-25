@@ -48,22 +48,38 @@
                 <form>
                     <sheet>
                         <group>
-                            <field name="date"/>
-                            <field name="location"/>
-                            <field name="level"/>
-                            <field name="discipline"/>
-                            <field name="result"/>
-                            <field name="ranking"/>
-                            <field name="penalty_points"/>
-                            <field name="prize_money"/>
-                            <field name="time"/>
-                            <field name="emotion"/>
-                            <field name="performance_review"/>
-                            <field name="improvements"/>
-                            <field name="more_info"/>
-                            <field name="attachment_ids"/>
-                            <field name="horse_id"/>
+                            <!-- Block 1: General Information -->
+                            <group string="General Information" col="4">
+                                <field name="date"/>
+                                <field name="location"/>
+                                <field name="level"/>
+                                <field name="discipline"/>
+                                <field name="horse_id"/>
+                            </group>
+
+                            <!-- Block 2: Competition Results -->
+                            <group string="Competition Results" col="4">
+                                <field name="result"/>
+                                <field name="ranking"/>
+                                <field name="penalty_points"/>
+                                <field name="prize_money"/>
+                                <field name="time"/>
+                            </group>
+
+                            <!-- Block 3: Evaluation & Feedback -->
+                            <group string="Evaluation and Feedback" col="2">
+                                <field name="emotion"/>
+                                <field name="performance_review"/>
+                                <field name="improvements"/>
+                                <field name="more_info"/>
+                            </group>
                         </group>
+
+                        <!-- Attachments -->
+                        <group string="Attachments">
+                            <field name="attachment_ids"/>
+                        </group>
+
                     </sheet>
                 </form>
             </field>

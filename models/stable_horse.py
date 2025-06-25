@@ -79,9 +79,9 @@ class StableHorses(models.Model):
         string="Rations MRP"
     )
 
+    # Automatically computes the age based on the birth date
     @api.depends('birth_date')
     def _compute_age(self):
-        """Automatically calculates the horse's age based on its birth date."""
         today = date.today()
         for record in self:
             if record.birth_date:
@@ -91,6 +91,7 @@ class StableHorses(models.Model):
             else:
                 record.age = 0
 
+    # Automatically computes the number of competitions this year
     def _compute_competition_this_year(self):
         current_year=date.today().year
         start_date= date(current_year, 1, 1)

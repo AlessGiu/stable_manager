@@ -1,0 +1,16 @@
+<odoo>
+    <record id="action_report_horse" model="ir.actions.report">
+        <field name="name">Fiche Cheval</field>
+        <field name="model">stable.horse</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">stable_manager.horse_report_document</field>
+        <field name="report_file">stable_manager.horse_report_document</field>
+        <field name="print_report_name">'Fiche_Cheval_' + object.name</field>
+    </record>
+
+</odoo>
+
+
+
+
+

@@ -54,8 +54,17 @@
                                 icon="fa-trophy">
                             <field name="competition_this_year"
                                    widget="statinfo"
-                                   string="competition(s) this year"/>
+                                   string=" competition(s) this year"/>
                         </button>
+
+                        <!-- Button to print horse profile -->
+                        <button name="%(action_report_horse)d"
+                                type="action"
+                                string="Print Profile"
+                                class="oe_highlight"
+                                icon="fa-print"/>
+
+
                     </header>
                     <sheet>
                         <!-- Ribbon: visually highlights horses in competition -->

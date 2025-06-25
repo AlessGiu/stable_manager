@@ -29,6 +29,7 @@ class StableHealth(models.Model):
     report = fields.Binary(string="Veterinary Report")
     report_filename = fields.Char(string="File Name")
     date_vaccine = fields.Date(string="Vaccination Date")
+
     next_reminder = fields.Date(
         string="Next Vaccine/Worming",
         compute='_compute_next_vermifuge',
