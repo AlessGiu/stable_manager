@@ -4,6 +4,7 @@ from odoo import models, fields, api
 class StableCompetition(models.Model):
     _name = 'stable.competition'
     _description = 'Equestrian Competition'
+    _order = 'date desc'
 
     # Date and location of the competition
     date = fields.Date("Date", required=True)
@@ -25,7 +26,9 @@ class StableCompetition(models.Model):
         ('complet', 'Eventing'),
         ('endurance', 'Endurance'),
         ('attelage', 'Driving'),
-    ], required=True, string="Discipline")
+    ], required=True,
+        string="Discipline",
+        default='cso', )
 
     # Result and ranking information
     result = fields.Selection([
@@ -49,8 +52,8 @@ class StableCompetition(models.Model):
         ('motivated', 'Motivated'),
         ('frustrated', 'Frustrated'),
     ], string="Emotion felt")
-    performance_review = fields.Text("Performance analysis")
-    improvements = fields.Text("Points to improve", help="Aspects to work on")
+    performance_review = fields.Text("Performance analysis" )
+    improvements = fields.Text("Points to improve")
     more_info = fields.Text("Additional information")
 
     # Attachments for competition photos or documents
@@ -59,13 +62,20 @@ class StableCompetition(models.Model):
     # Link to the horse that participated in the competition
     horse_id = fields.Many2one('stable.horse', string="Horse", required=True)
 
-
     # chatter message when a new competition is created
     @api.model
     def create(self, vals):
+        if not vals.get('location'):
+            vals['location'] = 'Unknown Competition'
+
         competition = super().create(vals)
 
         if competition.horse_id:
             competition.horse_id.message_post(
-                body=f"New competition added: {competition.location} on {competition.date}. Result: {competition.result or 'N/A'}",)
+                body=f"New competition added: "
+                     f"{competition.location} "
+                     f"on {competition.date}. "
+                     f"Result: {competition.result or 'N/A'}"
+            )
+
         return competition

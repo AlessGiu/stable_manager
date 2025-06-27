@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class StableDentist(models.Model):
@@ -49,3 +49,15 @@ class StableDentist(models.Model):
 
     # Additional notes for follow-up or context
     notes = fields.Text("Additional Notes")
+
+    @api.model
+    def create (self, vals):
+        record = super().create(vals)
+        if record.horse_id:
+            record.horse_id.message_post(
+                body=f"New dental visit recorded for {record.horse_id.name} "
+                     f"on {record.visit_date}. Reason: {record.reason or 'N/A'}. "
+                     f"Recommendations: {record.recommendations or 'N/A'}",
+                subtype_xmlid='mail.mt_note'
+            )
+        return record

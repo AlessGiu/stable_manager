@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class StableVeterinary(models.Model):
@@ -50,6 +50,16 @@ class StableVeterinary(models.Model):
     cost = fields.Float(string="Visit Cost (€)")
     insurance_covered = fields.Boolean(string="Covered by Insurance")
     notes = fields.Text(string="Additional Notes")
+
+    @api.model
+    def create(self, vals):
+        record = super().create(vals)
+        if record.horse_id:
+            record.horse_id.message_post(
+                body=f"New medication prescribed for {record.horse_id.name} "
+                     f"on {record.visit_date}. Medication: {record. medication_ids or 'N/A'}. "
+            )
+        return record
 
 
 class StableVeterinaryMedication(models.Model):

@@ -93,12 +93,13 @@ class StableHorses(models.Model):
 
     # Automatically computes the number of competitions this year
     def _compute_competition_this_year(self):
-        current_year=date.today().year
-        start_date= date(current_year, 1, 1)
+        current_year = date.today().year
+        start_date = date(current_year, 1, 1)
         today = date.today()
         for horse in self:
-            horse.competition_this_year = self.env ['stable.competition'].search_count([
+            horse.competition_this_year = self.env['stable.competition'].search_count([
                 ('horse_id', '=', horse.id),
                 ('date', '>=', start_date),
                 ('date', '<=', today)
             ])
+

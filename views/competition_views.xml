@@ -17,28 +17,21 @@
 
         <!-- List view -->
         <record id="competition_list_view" model="ir.ui.view">
-            <field name="name">stable_manager list</field>
+            <field name="name">stable_competition_list</field>
             <field name="model">stable.competition</field>
             <field name="arch" type="xml">
-                <list string="Competitions">
+                <list string="Competitions" create="true" editable="bottom">
                     <field name="date"/>
-                    <field name="location"/>
+                    <field name="horse_id"/>
                     <field name="level"/>
-                    <field name="discipline"/>
+                    <field name="location"/>
                     <field name="result"/>
                     <field name="ranking"/>
-                    <field name="penalty_points"/>
                     <field name="prize_money"/>
-                    <field name="time"/>
-                    <field name="emotion"/>
-                    <field name="performance_review"/>
-                    <field name="improvements"/>
-                    <field name="more_info"/>
-                    <field name="attachment_ids"/>
-                    <field name="horse_id"/>
                 </list>
             </field>
         </record>
+
 
         <!-- Form view -->
         <record id="view_competition_form" model="ir.ui.view">
@@ -49,7 +42,7 @@
                     <sheet>
                         <group>
                             <!-- Block 1: General Information -->
-                            <group string="General Information" col="4">
+                            <group string="📅 General Information" col="4">
                                 <field name="date"/>
                                 <field name="location"/>
                                 <field name="level"/>
@@ -58,7 +51,7 @@
                             </group>
 
                             <!-- Block 2: Competition Results -->
-                            <group string="Competition Results" col="4">
+                            <group string="🏆 Competition Results" col="4">
                                 <field name="result"/>
                                 <field name="ranking"/>
                                 <field name="penalty_points"/>
@@ -67,17 +60,17 @@
                             </group>
 
                             <!-- Block 3: Evaluation & Feedback -->
-                            <group string="Evaluation and Feedback" col="2">
+                            <group string="📝 Evaluation and Feedback" col="2">
                                 <field name="emotion"/>
-                                <field name="performance_review"/>
-                                <field name="improvements"/>
-                                <field name="more_info"/>
+                                <field name="performance_review" placeholder="What went well, what didn't?"/>
+                                <field name="improvements" placeholder="What can be improved?"/>
+                                <field name="more_info" placeholder="Any other details about the competition?"/>
                             </group>
                         </group>
 
                         <!-- Attachments -->
                         <group string="Attachments">
-                            <field name="attachment_ids"/>
+                            <field name="attachment_ids" widget="many2many_binary"/>
                         </group>
 
                     </sheet>

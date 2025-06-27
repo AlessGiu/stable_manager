@@ -4,6 +4,7 @@ from odoo import models, fields, api
 class StableHealth(models.Model):
     _name = 'stable.vaccins'
     _description = 'Horse Vaccines'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
     horse_id = fields.Many2one('stable.horse', string="Horse")
     vet_name = fields.Char(string="Veterinarian Name")
@@ -12,6 +13,7 @@ class StableHealth(models.Model):
     medical_history = fields.Char(string="Medical History")
 
     vaccine_type = fields.Selection([
+        ('vermifuge', 'Deworming'),
         ('tetanos', 'Tetanus'),
         ('grippe', 'Equine Influenza'),
         ('rage', 'Rabies'),
@@ -46,3 +48,14 @@ class StableHealth(models.Model):
                                      months=6)
                                     ) if record.date_vaccine \
                 else False
+
+    @api.model
+    def create(self, vals):
+        record = super().create(vals)
+        if record.vaccine_type == 'vermifuge':
+            record.horse_id.message_post(
+                body=f"New deworming recorded for {record.horse_id.name}."
+                     f" Next reminder on {record.next_reminder}.",
+                subtype_xmlid='mail.mt_note'
+            )
+        return record

@@ -1,5 +1,5 @@
 # Odoo model for tracking osteopath visits and treatments for horses
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class StableOsteopath(models.Model):
@@ -36,3 +36,14 @@ class StableOsteopath(models.Model):
 
     # Additional notes for follow-up or context
     notes = fields.Text("Additional Notes")
+
+    @api.model
+    def create (self, vals):
+        record = super().create(vals)
+        if record.horse_id:
+            record.horse_id.message_post(
+                body=f"New osteopath visit recorded for {record.horse_id.name} "
+                     f"on {record.visit_date}. Reason: {record.reason or 'N/A'}. "
+                     f"Recommendations: {record.recommendations or 'N/A'}"
+            )
+        return record
