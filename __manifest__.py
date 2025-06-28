@@ -19,10 +19,11 @@
     'depends': ['base', 'mail', 'stock', 'mrp'],
 
     'data': [
+        'data/horses_data.xml',
         'data/vaccine_data.xml',
         'data/competition_data.xml',
-        'data/horses_data.xml',
         'data/dentist_data.xml',
+
         'security/ir.model.access.csv',
 
         'views/reports/horse_report.xml',
