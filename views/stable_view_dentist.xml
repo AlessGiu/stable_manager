@@ -55,7 +55,7 @@
 
         <!-- Action -->
         <record id="open_view_dentist_visits" model="ir.actions.act_window">
-            <field name="name">Dental Visits</field>
+            <field name="name">Dental visit</field>
             <field name="res_model">stable.dentist</field>
             <field name="view_mode">list,form</field>
         </record>

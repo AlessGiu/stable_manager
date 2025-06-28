@@ -1,0 +1,159 @@
+<odoo>
+    <data noupdate="0">
+
+        <!-- Followay dentist -->
+
+        <record id="dentist_visit_followay_2024" model="stable.dentist">
+            <field name="horse_id" ref="stable_manager.horse_demo_followay"/>
+            <field name="dentist_name">Dr. Jean Cheval</field>
+            <field name="dentist_contact">+33 6 12 34 56 78</field>
+            <field name="reason">Routine annual dental check-up</field>
+            <field name="findings">Minor sharp points observed</field>
+            <field name="treatment_done">Float teeth and polish</field>
+            <field name="recommendations">Next check in 12 months</field>
+            <field name="teeth_condition">bon</field>
+            <field name="specific_issues">points</field>
+            <field name="visit_date">2024-11-03</field>
+            <field name="next_visit">2025-11-03</field>
+            <field name="sedation_used">1</field>
+            <field name="sedation_details">Light sedation with Dormosedan</field>
+            <field name="notes">The horse tolerated the procedure well.</field>
+        </record>
+
+        <!-- Iliko dentist -->
+        <record id="dentist_visit_iliko" model="stable.dentist">
+            <field name="horse_id" ref="stable_manager.horse_demo_iliko"/>
+            <field name="dentist_name">Dr. Louise Equinox</field>
+            <field name="dentist_contact">+33 6 55 44 33 22</field>
+            <field name="reason">Routine dental visit</field>
+            <field name="findings">Slight wear on upper molars</field>
+            <field name="treatment_done">Polishing and minor filing</field>
+            <field name="recommendations">Regular annual follow-up</field>
+            <field name="teeth_condition">bon</field>
+            <field name="specific_issues">points</field>
+            <field name="visit_date">2024-10-18</field>
+            <field name="next_visit">2025-10-18</field>
+            <field name="sedation_used">0</field>
+            <field name="notes">No sedation required, very calm.</field>
+        </record>
+
+
+        <!-- Sherpa dentist -->
+        <record id="dentist_visit_sherpa" model="stable.dentist">
+            <field name="horse_id" ref="stable_manager.horse_demo_sherpa"/>
+            <field name="dentist_name">Dr. Pauline Morsure</field>
+            <field name="dentist_contact">+33 6 01 01 01 01</field>
+            <field name="reason">Regular inspection</field>
+            <field name="findings">All teeth aligned</field>
+            <field name="treatment_done">None required</field>
+            <field name="recommendations">Check again in 18 months</field>
+            <field name="teeth_condition">excellent</field>
+            <field name="specific_issues">none</field>
+            <field name="visit_date">2024-10-10</field>
+            <field name="next_visit">2026-04-10</field>
+            <field name="sedation_used">0</field>
+            <field name="notes">Very cooperative.</field>
+        </record>
+
+        <!-- Vagabond dentist -->
+        <record id="dentist_visit_vagabond" model="stable.dentist">
+            <field name="horse_id" ref="stable_manager.horse_demo_vagabond"/>
+            <field name="dentist_name">Dr. Pauline Morsure</field>
+            <field name="dentist_contact">+33 6 01 01 01 01</field>
+            <field name="reason">Chewing issue</field>
+            <field name="findings">One molar slightly misaligned</field>
+            <field name="treatment_done">Filed down excess tooth</field>
+            <field name="recommendations">Soft food for 2 weeks</field>
+            <field name="teeth_condition">limite</field>
+            <field name="specific_issues">points</field>
+            <field name="visit_date">2024-09-05</field>
+            <field name="next_visit">2025-03-05</field>
+            <field name="sedation_used">1</field>
+            <field name="sedation_details">Dormosedan + Butorphanol</field>
+        </record>
+
+        <!-- Omaley dentist -->
+        <record id="dentist_visit_omaley" model="stable.dentist">
+            <field name="horse_id" ref="stable_manager.horse_demo_omaley"/>
+            <field name="dentist_name">Dr. Jean Cheval</field>
+            <field name="dentist_contact">+33 6 99 88 77 66</field>
+            <field name="reason">Routine exam</field>
+            <field name="findings">Mild hooks starting</field>
+            <field name="treatment_done">Removed hooks</field>
+            <field name="recommendations">Recheck every 6 months</field>
+            <field name="teeth_condition">bon</field>
+            <field name="specific_issues">points</field>
+            <field name="visit_date">2024-12-01</field>
+            <field name="next_visit">2025-06-01</field>
+            <field name="sedation_used">1</field>
+        </record>
+
+        <!-- Nice Berry dentist -->
+        <record id="dentist_visit_niceberry" model="stable.dentist">
+            <field name="horse_id" ref="stable_manager.horse_demo_niceberry"/>
+            <field name="dentist_name">Dr. Louise Equinox</field>
+            <field name="dentist_contact">+33 6 23 45 67 89</field>
+            <field name="reason">Routine check</field>
+            <field name="findings">Healthy teeth</field>
+            <field name="treatment_done">Polishing only</field>
+            <field name="recommendations">Annual check-up recommended</field>
+            <field name="teeth_condition">bon</field>
+            <field name="specific_issues">none</field>
+            <field name="visit_date">2024-08-15</field>
+            <field name="next_visit">2025-08-15</field>
+            <field name="sedation_used">0</field>
+        </record>
+
+        <!-- Perry dentist -->
+        <record id="dentist_visit_perry" model="stable.dentist">
+            <field name="horse_id" ref="stable_manager.horse_demo_perry"/>
+            <field name="dentist_name">Dr. Jean Cheval</field>
+            <field name="dentist_contact">+33 6 12 34 56 78</field>
+            <field name="reason">Performance drop</field>
+            <field name="findings">Slight gum irritation</field>
+            <field name="treatment_done">Teeth smoothing</field>
+            <field name="recommendations">Check for gingivitis in 6 months</field>
+            <field name="teeth_condition">suivi</field>
+            <field name="specific_issues">parodonte</field>
+            <field name="visit_date">2024-10-21</field>
+            <field name="next_visit">2025-04-21</field>
+            <field name="sedation_used">1</field>
+            <field name="sedation_details">Light sedative</field>
+        </record>
+
+        <!-- Resulton dentist -->
+        <record id="dentist_visit_resulton" model="stable.dentist">
+            <field name="horse_id" ref="stable_manager.horse_demo_resulton"/>
+            <field name="dentist_name">Dr. Louise Equinox</field>
+            <field name="dentist_contact">+33 6 65 43 21 00</field>
+            <field name="reason">Routine</field>
+            <field name="findings">One small cavity</field>
+            <field name="treatment_done">Cleaned and sealed cavity</field>
+            <field name="recommendations">Monitor closely</field>
+            <field name="teeth_condition">bon</field>
+            <field name="specific_issues">carie</field>
+            <field name="visit_date">2024-07-28</field>
+            <field name="next_visit">2025-01-28</field>
+            <field name="sedation_used">1</field>
+        </record>
+
+        <!-- Excalibur dentist -->
+        <record id="dentist_visit_excalibur" model="stable.dentist">
+            <field name="horse_id" ref="stable_manager.horse_demo_excalibur"/>
+            <field name="dentist_name">Dr. Pauline Morsure</field>
+            <field name="dentist_contact">+33 6 22 22 22 22</field>
+            <field name="reason">Dental check-up</field>
+            <field name="findings">Fractured incisor</field>
+            <field name="treatment_done">Filed and treated with dental sealant</field>
+            <field name="recommendations">Follow-up in 3 months</field>
+            <field name="teeth_condition">problemes</field>
+            <field name="specific_issues">fracture</field>
+            <field name="visit_date">2024-06-10</field>
+            <field name="next_visit">2024-09-10</field>
+            <field name="sedation_used">1</field>
+            <field name="sedation_details">Strong sedation due to stress</field>
+        </record>
+
+
+    </data>
+</odoo>

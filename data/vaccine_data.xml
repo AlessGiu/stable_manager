@@ -1,0 +1,122 @@
+<odoo>
+    <data noupdate="0">
+
+        <record id="vaccine_followay_2024" model="stable.vaccins">
+            <field name="horse_id" ref="stable_manager.horse_demo_followay"/>
+            <field name="vet_name">Dr. Marcel Vétérin</field>
+            <field name="vet_contact">+33 6 23 45 67 89</field>
+            <field name="vet_clinic">Clinique Equine de Lyon</field>
+            <field name="medical_history">No previous issues</field>
+            <field name="vaccine_type">tetanos</field>
+            <field name="global_health">bon</field>
+            <field name="date_vaccine">2024-03-05</field>
+            <field name="next_reminder">2025-03-05</field>
+            <field name="notes">Tolerated well</field>
+        </record>
+
+        <record id="vaccine_iliko_2025" model="stable.vaccins">
+            <field name="horse_id" ref="stable_manager.horse_demo_iliko"/>
+            <field name="vet_name">Dr. Sophie Vet</field>
+            <field name="vet_contact">+33 7 89 01 23 45</field>
+            <field name="vet_clinic">VetÉqui Tours</field>
+            <field name="medical_history">Minor colic last year</field>
+            <field name="vaccine_type">grippe</field>
+            <field name="global_health">excellent</field>
+            <field name="date_vaccine">2025-01-20</field>
+            <field name="next_reminder">2026-01-20</field>
+            <field name="notes">Boost planned in 6 months</field>
+        </record>
+
+        <record id="vaccine_sherpa_2024" model="stable.vaccins">
+            <field name="horse_id" ref="stable_manager.horse_demo_sherpa"/>
+            <field name="vet_name">Dr. Pierre Cheval</field>
+            <field name="vet_contact">+33 6 45 67 89 01</field>
+            <field name="vet_clinic">Chantilly Equine</field>
+            <field name="medical_history">Clean file</field>
+            <field name="vaccine_type">rhinopneumonie</field>
+            <field name="global_health">bon</field>
+            <field name="date_vaccine">2024-08-11</field>
+            <field name="next_reminder">2025-08-11</field>
+            <field name="notes">Stable condition</field>
+        </record>
+
+        <record id="vaccine_vagabond_2025" model="stable.vaccins">
+            <field name="horse_id" ref="stable_manager.horse_demo_vagabond"/>
+            <field name="vet_name">Dr. Emmanuelle Pommier</field>
+            <field name="vet_contact">+33 7 11 22 33 44</field>
+            <field name="vet_clinic">Deauville EquiVet</field>
+            <field name="medical_history">Dental float in 2023</field>
+            <field name="vaccine_type">vermifuge</field>
+            <field name="global_health">a surveiller</field>
+            <field name="date_vaccine">2025-04-09</field>
+            <field name="next_reminder">2025-10-09</field>
+            <field name="notes">Slight sensitivity to paste</field>
+        </record>
+
+        <record id="vaccine_omaley_2024" model="stable.vaccins">
+            <field name="horse_id" ref="stable_manager.horse_demo_omaley"/>
+            <field name="vet_name">Dr. Anaïs Lutin</field>
+            <field name="vet_contact">+33 6 33 22 11 44</field>
+            <field name="vet_clinic">Clinique Poney Nancy</field>
+            <field name="medical_history">Pony asthma managed</field>
+            <field name="vaccine_type">grippe</field>
+            <field name="global_health">bon</field>
+            <field name="date_vaccine">2024-02-16</field>
+            <field name="next_reminder">2025-02-16</field>
+            <field name="notes">Responded well to vaccine</field>
+        </record>
+
+        <record id="vaccine_niceberry_2025" model="stable.vaccins">
+            <field name="horse_id" ref="stable_manager.horse_demo_niceberry"/>
+            <field name="vet_name">Dr. Camille Berry</field>
+            <field name="vet_contact">+33 7 65 43 21 00</field>
+            <field name="vet_clinic">Clinique du Sud-Ouest</field>
+            <field name="medical_history">History of laminitis</field>
+            <field name="vaccine_type">rage</field>
+            <field name="global_health">a surveiller</field>
+            <field name="date_vaccine">2025-03-30</field>
+            <field name="next_reminder">2026-03-30</field>
+            <field name="notes">Special care needed</field>
+        </record>
+
+        <record id="vaccine_perry_2024" model="stable.vaccins">
+            <field name="horse_id" ref="stable_manager.horse_demo_perry"/>
+            <field name="vet_name">Dr. Henri Marchal</field>
+            <field name="vet_contact">+33 6 56 78 90 12</field>
+            <field name="vet_clinic">Nîmes EquiCare</field>
+            <field name="medical_history">No major issues</field>
+            <field name="vaccine_type">tetanos</field>
+            <field name="global_health">excellent</field>
+            <field name="date_vaccine">2024-05-19</field>
+            <field name="next_reminder">2025-05-19</field>
+            <field name="notes">Calm and cooperative</field>
+        </record>
+
+        <record id="vaccine_resulton_2025" model="stable.vaccins">
+            <field name="horse_id" ref="stable_manager.horse_demo_resulton"/>
+            <field name="vet_name">Dr. Isabelle Veto</field>
+            <field name="vet_contact">+33 7 87 65 43 21</field>
+            <field name="vet_clinic">Reims Veto Plus</field>
+            <field name="medical_history">Mild dermatitis last summer</field>
+            <field name="vaccine_type">autre</field>
+            <field name="global_health">bon</field>
+            <field name="date_vaccine">2025-02-14</field>
+            <field name="next_reminder">2026-02-14</field>
+            <field name="notes">Supplemental diet advised</field>
+        </record>
+
+        <record id="vaccine_excalibur_2024" model="stable.vaccins">
+            <field name="horse_id" ref="stable_manager.horse_demo_excalibur"/>
+            <field name="vet_name">Dr. Roland Epic</field>
+            <field name="vet_contact">+33 6 12 34 56 00</field>
+            <field name="vet_clinic">Angers EquiVet</field>
+            <field name="medical_history">No alerts</field>
+            <field name="vaccine_type">grippe</field>
+            <field name="global_health">excellent</field>
+            <field name="date_vaccine">2024-12-01</field>
+            <field name="next_reminder">2025-12-01</field>
+            <field name="notes">Excellent behaviour</field>
+        </record>
+
+    </data>
+</odoo>

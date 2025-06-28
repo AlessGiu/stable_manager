@@ -1,26 +1,12 @@
 <odoo>
     <data>
 
-        <!-- Action -->
-        <record id="open_view_competition" model="ir.actions.act_window">
-            <field name="name">Competition</field>
-            <field name="res_model">stable.competition</field>
-            <field name="view_mode">list,form</field>
-        </record>
-
-        <!-- Parent menu -->
-        <menuitem name="Stable Management" id="menu_stable" sequence="10"/>
-
-        <!-- Menu item -->
-        <menuitem name="Competitions" id="stable_manager_menu_view_competition"
-                  parent="menu_stable" action="open_view_competition"/>
-
         <!-- List view -->
         <record id="competition_list_view" model="ir.ui.view">
             <field name="name">stable_competition_list</field>
             <field name="model">stable.competition</field>
             <field name="arch" type="xml">
-                <list string="Competitions" create="true" editable="bottom">
+                <list string="Competitions">
                     <field name="date"/>
                     <field name="horse_id"/>
                     <field name="level"/>
@@ -31,7 +17,6 @@
                 </list>
             </field>
         </record>
-
 
         <!-- Form view -->
         <record id="view_competition_form" model="ir.ui.view">
@@ -77,6 +62,19 @@
                 </form>
             </field>
         </record>
+
+        <!-- Action -->
+        <record id="open_view_competition" model="ir.actions.act_window">
+            <field name="name">Competition</field>
+            <field name="res_model">stable.competition</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <!-- Menu item -->
+        <menuitem name="Competitions"
+                  id="stable_manager_menu_view_competition"
+                  parent="menu_stable"
+                  action="open_view_competition"/>
 
     </data>
 </odoo>

@@ -1,0 +1,141 @@
+<odoo>
+    <data noupdate="0">
+
+        <!-- Followay Dansant -->
+        <record id="horse_demo_followay" model="stable.horse">
+            <field name="name">Followay Dansant</field>
+            <field name="sireno">123456789</field>
+            <field name="sexe">hongre</field>
+            <field name="birth_date">2015-04-15</field>
+            <field name="robe">bai</field>
+            <field name="type_pension">classic</field>
+            <field name="taille">165</field>
+            <field name="race">selle_francais</field>
+            <field name="poids">550</field>
+            <field name="puce_elec">1</field>
+            <field name="in_competition">1</field>
+        </record>
+
+        <!-- Iliko -->
+        <record id="horse_demo_iliko" model="stable.horse">
+            <field name="name">Iliko Presto des Septs</field>
+            <field name="sireno">987654321</field>
+            <field name="sexe">jument</field>
+            <field name="birth_date">2012-09-20</field>
+            <field name="robe">gris</field>
+            <field name="type_pension">work</field>
+            <field name="taille">160</field>
+            <field name="race">pony</field>
+            <field name="poids">520</field>
+            <field name="puce_elec">1</field>
+            <field name="in_competition">0</field>
+        </record>
+
+        <!-- Sherpa -->
+        <record id="horse_demo_sherpa" model="stable.horse">
+            <field name="name">Sherpa</field>
+            <field name="sireno">100000001</field>
+            <field name="sexe">hongre</field>
+            <field name="birth_date">2016-05-10</field>
+            <field name="robe">bai</field>
+            <field name="type_pension">classic</field>
+            <field name="taille">178</field>
+            <field name="race">selle_francais</field>
+            <field name="poids">570</field>
+            <field name="puce_elec">1</field>
+            <field name="in_competition">1</field>
+        </record>
+
+        <!-- Vagabond de la Pomme -->
+        <record id="horse_demo_vagabond" model="stable.horse">
+            <field name="name">Vagabond de la Pomme</field>
+            <field name="sireno">100000002</field>
+            <field name="sexe">hongre</field>
+            <field name="birth_date">2014-08-12</field>
+            <field name="robe">bai</field>
+            <field name="type_pension">classic</field>
+            <field name="taille">175</field>
+            <field name="race">selle_francais</field>
+            <field name="poids">560</field>
+            <field name="puce_elec">1</field>
+            <field name="in_competition">1</field>
+        </record>
+
+        <!-- Omaley de l'arc en ciel -->
+        <record id="horse_demo_omaley" model="stable.horse">
+            <field name="name">Omaley de l'arc en ciel</field>
+            <field name="sireno">100000003</field>
+            <field name="sexe">hongre</field>
+            <field name="birth_date">2018-06-01</field>
+            <field name="robe">bai</field>
+            <field name="type_pension">classic</field>
+            <field name="taille">148</field>
+            <field name="race">pony</field>
+            <field name="poids">480</field>
+            <field name="puce_elec">1</field>
+            <field name="in_competition">0</field>
+        </record>
+
+        <!-- Nice Berry de l'arc en ciel -->
+        <record id="horse_demo_niceberry" model="stable.horse">
+            <field name="name">Nice Berry de l'arc en ciel</field>
+            <field name="sireno">100000004</field>
+            <field name="sexe">hongre</field>
+            <field name="birth_date">2015-04-18</field>
+            <field name="robe">bai</field>
+            <field name="type_pension">classic</field>
+            <field name="taille">155</field>
+            <field name="race">selle_francais</field>
+            <field name="poids">500</field>
+            <field name="puce_elec">1</field>
+            <field name="in_competition">0</field>
+        </record>
+
+        <!-- Perry -->
+        <record id="horse_demo_perry" model="stable.horse">
+            <field name="name">Perry</field>
+            <field name="sireno">100000005</field>
+            <field name="sexe">hongre</field>
+            <field name="birth_date">2017-03-09</field>
+            <field name="robe">bai</field>
+            <field name="type_pension">classic</field>
+            <field name="taille">171</field>
+            <field name="race">selle_francais</field>
+            <field name="poids">550</field>
+            <field name="puce_elec">1</field>
+            <field name="in_competition">1</field>
+        </record>
+
+        <!-- Resulton -->
+        <record id="horse_demo_resulton" model="stable.horse">
+            <field name="name">Resulton</field>
+            <field name="sireno">100000006</field>
+            <field name="sexe">hongre</field>
+            <field name="birth_date">2013-07-22</field>
+            <field name="robe">bai</field>
+            <field name="type_pension">classic</field>
+            <field name="taille">177</field>
+            <field name="race">selle_francais</field>
+            <field name="poids">565</field>
+            <field name="puce_elec">1</field>
+            <field name="in_competition">1</field>
+        </record>
+
+        <!-- Excalibur -->
+        <record id="horse_demo_excalibur" model="stable.horse">
+            <field name="name">Excalibur</field>
+            <field name="sireno">100000007</field>
+            <field name="sexe">hongre</field>
+            <field name="birth_date">2016-11-05</field>
+            <field name="robe">bai</field>
+            <field name="type_pension">classic</field>
+            <field name="taille">176</field>
+            <field name="race">selle_francais</field>
+            <field name="poids">562</field>
+            <field name="puce_elec">1</field>
+            <field name="in_competition">1</field>
+        </record>
+
+
+    </data>
+</odoo>

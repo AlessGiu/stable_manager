@@ -44,8 +44,28 @@ class StableHorses(models.Model):
     ], tracking=True, default="classic", string="Pension Type")  # Type of boarding
 
     taille = fields.Integer("Height (cm)", required=True)
-    race = fields.Char("Breed")
-    poids = fields.Integer("Weight")
+    race = fields.Selection([
+        ("selle_francais", "Selle Français"),
+        ("lusitano", "Lusitano"),
+        ("kwpn", "KWPN"),
+        ("hanoverian", "Hanoverian"),
+        ("trakehner", "Trakehner"),
+        ("holsteiner", "Holsteiner"),
+        ("irish_sport_horse", "Irish Sport Horse"),
+        ("oldenburg", "Oldenburg"),
+        ("andalusian", "Andalusian"),
+        ("arabian", "Arabian"),
+        ("friesian", "Friesian"),
+        ("paint", "Paint Horse"),
+        ("quarter", "Quarter Horse"),
+        ("connemara", "Connemara"),
+        ("haflinger", "Haflinger"),
+        ("pony", "Pony"),
+        ("thoroughbred", "Thoroughbred"),
+        ("warmblood", "Warmblood"),
+    ], string="Breed")
+
+    poids = fields.Integer("Weight (kg)", required=True)
     puce_elec = fields.Boolean(
         default=True,
         string="Microchipped",
@@ -102,4 +122,3 @@ class StableHorses(models.Model):
                 ('date', '>=', start_date),
                 ('date', '<=', today)
             ])
-

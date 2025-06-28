@@ -187,7 +187,6 @@
             <field name="view_mode">kanban,list,form</field>
         </record>
 
-
         <!-- Root menu: stable management main entry point -->
         <menuitem id="menu_stable"
                   name="Stable Management"
@@ -205,7 +204,6 @@
                   name="Health"
                   parent="menu_stable"
                   sequence="20"/>
-
 
     </data>
 </odoo>
