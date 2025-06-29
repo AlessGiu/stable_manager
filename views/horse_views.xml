@@ -8,6 +8,7 @@
             <field name="arch" type="xml">
                 <list string="All Horses">
                     <field name="name" string="Name"/>
+                    <field name="owner_id" string="Owner"/>
                     <field name="sireno" string="SIRE No"/>
                     <field name="birth_date" string="Birth Date"/>
                     <field name="sexe" string="Sex"/>
@@ -98,6 +99,7 @@
                             </group>
                             <group string="Status and Boarding">
                                 <field name="type_pension"/>
+                                <field name="owner_id" string="Owner"/>
                                 <field name="in_competition"/>
                                 <field name="competition_tags_ids" widget="many2many_tags"
                                        placeholder="Is going in final?"/>

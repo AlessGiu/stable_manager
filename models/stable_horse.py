@@ -9,6 +9,7 @@ class StableHorses(models.Model):
 
     # Main identity fields for each horse
     name = fields.Char("Horse Name", required=True)
+    owner_id = fields.Many2one('res.partner', string="Owner", tracking=True)  # Owner of the horse
     sireno = fields.Char("SIRE Number")  # Official French horse registry number
     sexe = fields.Selection([
         ("hongre", "Gelding"),
