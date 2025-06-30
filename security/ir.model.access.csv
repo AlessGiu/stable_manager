@@ -8,3 +8,5 @@ access_stable_dentist,access_stable_dentist,model_stable_dentist,,1,1,1,1
 access_stable_farrier,access_stable_farrier,model_stable_farrier,,1,1,1,1
 access_stable_veterinary,access_stable_veterinary,model_stable_veterinary,,1,1,1,1
 access_stable_horse_tag,access_stable_horse_tag,model_stable_horse_tag,,1,1,1,1
+access_stable_veterinary_medication,access_stable_veterinary_medication,model_stable_veterinary_medication,base.group_user,1,1,1,0
+

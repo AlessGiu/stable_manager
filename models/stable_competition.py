@@ -52,7 +52,7 @@ class StableCompetition(models.Model):
         ('motivated', 'Motivated'),
         ('frustrated', 'Frustrated'),
     ], string="Emotion felt")
-    performance_review = fields.Text("Performance analysis" )
+    performance_review = fields.Text("Performance analysis")
     improvements = fields.Text("Points to improve")
     more_info = fields.Text("Additional information")
 
@@ -63,19 +63,22 @@ class StableCompetition(models.Model):
     horse_id = fields.Many2one('stable.horse', string="Horse", required=True)
 
     # chatter message when a new competition is created
-    @api.model
-    def create(self, vals):
-        if not vals.get('location'):
-            vals['location'] = 'Unknown Competition'
+    @api.model_create_multi
+    def create(self, vals_list):
+        competitions = super().create(vals_list)
 
-        competition = super().create(vals)
+        for competition in competitions:
+            # Définir la location par défaut si non fournie
+            if not competition.location:
+                competition.location = 'Unknown Competition'
 
-        if competition.horse_id:
-            competition.horse_id.message_post(
-                body=f"New competition added: "
-                     f"{competition.location} "
-                     f"on {competition.date}. "
-                     f"Result: {competition.result or 'N/A'}"
-            )
+            # Poster un message sur le cheval si spécifié
+            if competition.horse_id:
+                competition.horse_id.message_post(
+                    body=f"New competition added: "
+                         f"{competition.location} "
+                         f"on {competition.date}. "
+                         f"Result: {competition.result or 'N/A'}"
+                )
 
-        return competition
+        return competitions

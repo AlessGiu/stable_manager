@@ -1,5 +1,6 @@
 from odoo import models, fields, api
 from datetime import date
+from odoo.exceptions import ValidationError
 
 
 class StableHorses(models.Model):
@@ -10,7 +11,7 @@ class StableHorses(models.Model):
     # Main identity fields for each horse
     name = fields.Char("Horse Name", required=True)
     owner_id = fields.Many2one('res.partner', string="Owner", tracking=True)  # Owner of the horse
-    sireno = fields.Char("SIRE Number")  # Official French horse registry number
+    sireno = fields.Char("SIRE Number")
     sexe = fields.Selection([
         ("hongre", "Gelding"),
         ("etalon", "Stallion"),
@@ -123,3 +124,27 @@ class StableHorses(models.Model):
                 ('date', '>=', start_date),
                 ('date', '<=', today)
             ])
+
+    @api.constrains('birth_date')
+    def _check_birth_date(self):
+        for record in self:
+            if record.birth_date and record.birth_date > date.today():
+                raise ValidationError("The birth date cannot be in the future.")
+
+    @api.constrains('name')
+    def _check_name(self):
+        for record in self:
+            if not record.name:
+                raise ValidationError("The horse name cannot be empty.")
+            if len(record.name) < 3:
+                raise ValidationError("The horse name must be at least 3 characters long.")
+            if len(record.name) > 50:
+                raise ValidationError("The horse name must not exceed 50 characters.")
+            if self.search_count([('name', '=', record.name)]) > 1:
+                raise ValidationError("This horse already exists.")
+
+    @api.constrains('owner_id')
+    def _check_owner(self):
+        for record in self:
+            if not record.owner_id:
+                raise ValidationError("Please select/create an owner for the horse.")

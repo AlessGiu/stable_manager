@@ -49,13 +49,14 @@ class StableHealth(models.Model):
                                     ) if record.date_vaccine \
                 else False
 
-    @api.model
-    def create(self, vals):
-        record = super().create(vals)
-        if record.vaccine_type == 'vermifuge':
-            record.horse_id.message_post(
-                body=f"New deworming recorded for {record.horse_id.name}."
-                     f" Next reminder on {record.next_reminder}.",
-                subtype_xmlid='mail.mt_note'
-            )
-        return record
+    @api.model_create_multi
+    def create(self, vals_list):
+        records = super().create(vals_list)
+        for record in records:
+            if record.vaccine_type == 'vermifuge':
+                record.horse_id.message_post(
+                    body=f"New deworming recorded for {record.horse_id.name}. "
+                         f"Next reminder on {record.next_reminder}.",
+                    subtype_xmlid='mail.mt_note'
+                )
+        return records

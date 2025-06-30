@@ -146,7 +146,7 @@
                 <kanban>
                     <templates>
                         <t t-name="kanban-box">
-                            <div class="o_kanban_card"
+                            <div class="o_kanban_box"
                                  style="border: 1px solid #ccc; border-radius: 10px; padding: 12px; background: #fefefe;">
                                 <!-- Horse image for quick identification -->
                                 <div class="o_kanban_image" style="text-align: center; margin-bottom: 10px;">
