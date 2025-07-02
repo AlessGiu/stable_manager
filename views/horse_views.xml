@@ -104,8 +104,8 @@
                                 <field name="type_pension"/>
                                 <field name="owner_id" string="Owner"/>
                                 <field name="in_competition"/>
-                                <field name="competition_tags_ids" widget="many2many_tags"
-                                       placeholder="Is going in final?"/>
+                                <!--<field name="progress_bar" widget="progressbar"
+                                       options="{'max_value': 100}"/> -->
                             </group>
                         </group>
 

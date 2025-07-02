@@ -39,6 +39,7 @@
         'views/stable_view_dentist.xml',
         'views/stable_view_farrier.xml',
         'views/stable_view_veterinary.xml',
+        #'views/stable_view_training.xml',
 
     ],
     'license': 'LGPL-3',

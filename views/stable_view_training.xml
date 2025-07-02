@@ -1,0 +1,37 @@
+<odoo>
+    <data>
+
+        <!-- View: Training Schedule Gantt -->
+        <record id="view_training_gantt" model="ir.ui.view">
+            <field name="name">stable.training.gantt</field>
+            <field name="model">stable.training</field>
+            <field name="arch" type="xml">
+                <gantt string="Training Schedule"
+                       date_start="start_date"
+                       date_stop="end_date"
+                       progress="progress"
+                       color="color"
+                       default_scale="day"
+                       quick_create="1">
+                    <field name="horse_id"/>
+                    <field name="assigned_to"/>
+                    <field name="progress"/>
+                </gantt>
+            </field>
+        </record>
+
+        <!-- Action: Open Training Schedule -->
+        <record id="open_training_schedule_action" model="ir.actions.act_window">
+            <field name="name">Training Schedule</field>
+            <field name="res_model">stable.training</field>
+            <field name="view_mode">gantt,list,form</field>
+        </record>
+
+        <!-- Menu Item: Training Schedule -->
+        <menuitem id="menu_training_schedule"
+                  name="Training Schedule"
+                  parent="menu_stable"
+                  action="open_training_schedule_action"
+                  sequence="20"/>
+    </data>
+</odoo>

@@ -90,12 +90,6 @@ class StableHorses(models.Model):
     farrier_ids = fields.One2many('stable.farrier', 'horse_id', string="Farrier Records")
     veterinary_ids = fields.One2many('stable.veterinary', 'horse_id', string="Veterinary Records")
 
-    competition_tags_ids = fields.Many2many(
-        'stable.horse.tag',
-        string="Competition Tags",
-        help="Tags associated with the horse for competition purposes."
-    )
-
     ration_mrp_ids = fields.Many2many(
         'mrp.production',
         string="Rations MRP"

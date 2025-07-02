@@ -13,4 +13,4 @@ access_stable_farrier,access_stable_farrier,model_stable_farrier,base.group_user
 access_stable_veterinary,access_stable_veterinary,model_stable_veterinary,base.group_user,1,0,0,0
 access_stable_horse_tag,access_stable_horse_tag,model_stable_horse_tag,base.group_user,1,0,0,0
 access_stable_veterinary_medication,access_stable_veterinary_medication,model_stable_veterinary_medication,base.group_user,,1,0,0,0
-
+access_stable_training,access_stable_training,model_stable_training,base.group_user,1,0,0,0
