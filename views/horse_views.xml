@@ -89,6 +89,9 @@
                                 <field name="age"/>
                                 <field name="sexe"/>
                                 <field name="race"/>
+                                <field name="image_1920" widget="image"
+                                       class="oe_avatar"
+                                       options="{'preview_image': 'image_1920'}"/>
                             </group>
                             <!-- Health and Medical: includes health records and medical history -->
                             <group string="Physical Characteristics">
@@ -147,32 +150,31 @@
                     <templates>
                         <t t-name="kanban-box">
                             <div class="o_kanban_box"
-                                 style="border: 1px solid #ccc; border-radius: 10px; padding: 12px; background: #fefefe;">
+                            >
                                 <!-- Horse image for quick identification -->
-                                <div class="o_kanban_image" style="text-align: center; margin-bottom: 10px;">
+                                <div class="o_kanban_image">
                                     <img t-att-src="kanban_image('stable.horse', 'image_1920', record.id.value)"
                                          class="oe_kanban_avatar"
                                          alt="Horse Image"
-                                         style="max-height: 80px; border-radius: 8px;"/>
+                                    />
                                 </div>
-                                <!-- Key details: name, coat, sex, height, birth date -->
-                                <div class="o_kanban_details" style="text-align: center;">
-                                    <strong style="font-size: 16px; color: #2C3E50;">
-                                        <field name="name"/>
-                                    </strong>
-                                    <div style="margin-top: 4px; font-size: 13px; color: #7f8c8d;">
+
+                                <div class="o_kanban_details">
+
+                                    <field name="name"/>
+
+                                    <div>
                                         <field name="robe"/>
                                         •
                                         <field name="sexe"/>
                                     </div>
-                                    <div style="margin-top: 2px; font-size: 12px;">
-                                        Height:
-                                        <field name="taille"/>
-                                        cm
+                                    <div>
+                                        Owner:
+                                        <field name="owner_id"/>
                                     </div>
-                                    <div style="font-size: 12px;">
-                                        Born on:
-                                        <field name="birth_date"/>
+                                    <div>
+                                        Pension type:
+                                        <field name="type_pension"/>
                                     </div>
                                 </div>
                             </div>
@@ -192,6 +194,7 @@
         <!-- Root menu: stable management main entry point -->
         <menuitem id="menu_stable"
                   name="Stable Management"
+                  groups="stable_manager.group_stagiaire"
                   web_icon="stable_manager,static/description/icon.png"
                   sequence="10"/>
 
@@ -199,7 +202,8 @@
         <menuitem id="stable_manager_menu_view"
                   name="Horses"
                   parent="menu_stable"
-                  action="open_view_horses"/>
+                  action="open_view_horses"
+                  groups="stable_manager.group_stagiaire"/>
 
         <!-- Health menu: parent for all health-related sections -->
         <menuitem id="menu_health"

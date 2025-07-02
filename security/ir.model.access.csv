@@ -1,12 +1,16 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_stable_horse,access_stable_horse,model_stable_horse,,1,1,1,1
-access_stable_health,access_stable_health,model_stable_health,,1,1,1,1
-access_stable_competition,access_stable_competition,model_stable_competition,,1,1,1,1
-access_stable_vaccins,access_stable_vaccins,model_stable_vaccins,,1,1,1,1
-access_stable_osteopath,access_stable_osteopath,model_stable_osteopath,,1,1,1,1
-access_stable_dentist,access_stable_dentist,model_stable_dentist,,1,1,1,1
-access_stable_farrier,access_stable_farrier,model_stable_farrier,,1,1,1,1
-access_stable_veterinary,access_stable_veterinary,model_stable_veterinary,,1,1,1,1
-access_stable_horse_tag,access_stable_horse_tag,model_stable_horse_tag,,1,1,1,1
-access_stable_veterinary_medication,access_stable_veterinary_medication,model_stable_veterinary_medication,base.group_user,1,1,1,0
+access_stable_horse,access_stable_horse,model_stable_horse,base.group_system,1,1,1,1
+
+access_stable_horse_stagiaire,access_stable_horse_stagiaire,model_stable_horse,stable_manager.group_stagiaire,1,0,0,0
+access_stable_horse_palefrenier,access_stable_horse_palefrenier,model_stable_horse,stable_manager.group_palefrenier,1,0,0,0
+
+access_stable_health,access_stable_health,model_stable_health,base.group_user,1,0,0,0
+access_stable_competition,access_stable_competition,model_stable_competition,base.group_user,1,0,0,0
+access_stable_vaccins,access_stable_vaccins,model_stable_vaccins,base.group_user,1,0,0,0
+access_stable_osteopath,access_stable_osteopath,model_stable_osteopath,base.group_user,1,0,0,0
+access_stable_dentist,access_stable_dentist,model_stable_dentist,base.group_user,1,0,0,0
+access_stable_farrier,access_stable_farrier,model_stable_farrier,base.group_user,1,0,0,0
+access_stable_veterinary,access_stable_veterinary,model_stable_veterinary,base.group_user,1,0,0,0
+access_stable_horse_tag,access_stable_horse_tag,model_stable_horse_tag,base.group_user,1,0,0,0
+access_stable_veterinary_medication,access_stable_veterinary_medication,model_stable_veterinary_medication,base.group_user,,1,0,0,0
 

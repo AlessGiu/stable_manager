@@ -1,0 +1,40 @@
+<odoo>
+    <data>
+
+        <!-- Define a new module category for Stable Manager -->
+        <record id="module_stable_manager_security" model="ir.module.category">
+            <field name="name">Stable Manager</field> <!-- Name of the module category -->
+            <field name="description">Rights on stable management</field> <!-- Description of the module category -->
+        </record>
+
+        <!-- Define the Stable Manager Administrator group -->
+        <record id="group_stable_manager_admin" model="res.groups">
+            <field name="name">Stable Manager Administrator</field> <!-- Name of the group -->
+            <field name="category_id"
+                   ref="module_stable_manager_security"/> <!-- Assign the group to the Stable Manager category -->
+            <field name="implied_ids"
+                   eval="[(4, ref('group_palefrenier'))]"/> <!-- This group implies the Palefrenier group -->
+            <field name="users"
+                   eval="[(4,ref('base.user_root')),(4,ref('base.user_admin'))]"/> <!-- Assign root and admin users to this group -->
+        </record>
+
+        <!-- Define the Stagiaire group -->
+        <record id="group_stagiaire" model="res.groups">
+            <field name="name">Stagiaire</field> <!-- Name of the group -->
+            <field name="category_id"
+                   ref="module_stable_manager_security"/> <!-- Assign the group to the Stable Manager category -->
+            <field name="implied_ids"
+                   eval="[(4, ref('base.group_user'))]"/> <!-- This group implies the base user group -->
+        </record>
+
+        <!-- Define the Palefrenier group -->
+        <record id="group_palefrenier" model="res.groups">
+            <field name="name">Palefrenier</field> <!-- Name of the group -->
+            <field name="category_id"
+                   ref="module_stable_manager_security"/> <!-- Assign the group to the Stable Manager category -->
+            <field name="implied_ids"
+                   eval="[(4, ref('group_stagiaire'))]"/> <!-- This group implies the Stagiaire group -->
+        </record>
+
+    </data>
+</odoo>
