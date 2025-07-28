@@ -82,3 +82,5 @@ class StableCompetition(models.Model):
                 )
 
         return competitions
+
+    

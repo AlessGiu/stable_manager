@@ -119,12 +119,14 @@ class StableHorses(models.Model):
                 ('date', '<=', today)
             ])
 
+    # Constrains for birth date
     @api.constrains('birth_date')
     def _check_birth_date(self):
         for record in self:
             if record.birth_date and record.birth_date > date.today():
                 raise ValidationError("The birth date cannot be in the future.")
 
+    # Constrains for horse name
     @api.constrains('name')
     def _check_name(self):
         for record in self:
@@ -137,8 +139,18 @@ class StableHorses(models.Model):
             if self.search_count([('name', '=', record.name)]) > 1:
                 raise ValidationError("This horse already exists.")
 
+    # Constrains for owner
     @api.constrains('owner_id')
     def _check_owner(self):
         for record in self:
             if not record.owner_id:
                 raise ValidationError("Please select/create an owner for the horse.")
+
+    # Constrains for physical characteristics
+    @api.constrains('taille', 'poids')
+    def _check_size_weight(self):
+        for rec in self:
+            if rec.taille <= 0:
+                raise ValidationError("Height must be greater than zero.")
+            if rec.poids <= 0:
+                raise ValidationError("Weight must be greater than zero.")

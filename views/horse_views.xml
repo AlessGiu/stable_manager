@@ -23,17 +23,33 @@
             <field name="name">stable.horse.search</field>
             <field name="model">stable.horse</field>
             <field name="arch" type="xml">
-                <search string="All Horses">
-                    <field name="name" string="Nom"/>
-                    <filter name="type_pension_work" string="Pension travail"
-                            domain="[('type_pension', '=', 'work')]"/>
+                <search string="Search Horses">
+                    <field name="name"/>
+                    <field name="owner_id"/>
+                    <field name="race"/>
+                    <field name="type_pension"/>
+                    <field name="in_competition"/>
+                    <filter name="competition_filter" string="In competition" domain="[('in_competition','=',True)]"/>
+                    <filter name="no_chip" string="No ship" domain="[('puce_elec','=',False)]"/>
                 </search>
             </field>
         </record>
 
+        <!-- record for competition views -->
         <record id="action_stable_competition_this_year" model="ir.actions.act_window">
             <field name="name">Competitions this year</field>
             <field name="res_model">stable.competition</field>
+            <field name="view_mode">list,form</field>
+            <field name="domain">[
+                ('horse_id', '=', active_id),
+                ]
+            </field>
+        </record>
+
+        <!-- Action for vaccinations this year -->
+        <record id="action_stable_vaccin_this_year" model="ir.actions.act_window">
+            <field name="name">vaccins_ids</field>
+            <field name="res_model">stable.vaccins</field>
             <field name="view_mode">list,form</field>
             <field name="domain">[
                 ('horse_id', '=', active_id),
@@ -49,6 +65,8 @@
                 <form>
 
                     <header>
+
+                        <!-- Button to view competitions this year -->
                         <button name="%(action_stable_competition_this_year)d"
                                 type="action"
                                 class="oe_stat_button"
@@ -56,6 +74,16 @@
                             <field name="competition_this_year"
                                    widget="statinfo"
                                    string=" competition(s) this year"/>
+                        </button>
+
+                        <!-- Button to view vaccines this year -->
+                        <button name="%(action_stable_vaccin_this_year)d"
+                                type="action"
+                                class="oe_stat_button"
+                                icon="fa-medkit">
+                            <field name="vaccins_ids"
+                                   widget="statinfo"
+                                   string=" vaccine(s) this year"/>
                         </button>
 
                         <!-- Button to print horse profile -->

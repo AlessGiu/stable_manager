@@ -16,7 +16,7 @@
     'website': 'www.lesecuriesdelm.be',
     'category': 'Equestrian',
     'version': '1.0',
-    'depends': ['base', 'mail', 'stock', 'mrp'],
+    'depends': ['base', 'mail', 'stock', 'mrp','sale'],
 
     'data': [
 
