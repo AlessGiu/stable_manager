@@ -1,25 +1,24 @@
 {
     'name': 'Stable Manager',
     'version': '1.0',
-    'summary': 'Gérez vos chevaux, rations, compétitions et stocks de nourriture',
+    'summary': 'Manage your horses, rations, competitions and feed inventory',
     'description': """
-        Module de gestion équestre complet.
-        Ce module permet de suivre les informations essentielles d'une écurie :
-        - Fiches chevaux (âge, race, etc.)
-        - Rations alimentaires journalières
-        - Stocks de nourriture
-        - Suivi des compétitions (résultats, émotions, performance)
+Complete equestrian management module for horse clubs and stables.
 
-        Destiné aux clubs équestres, cavaliers ou gestionnaires d’écuries.
+This module helps to manage essential operations in a stable:
+- Horse records (age, breed, sex, etc.)
+- Daily feeding plans and rations
+- Feed inventory and stock control
+- Competition tracking (results, emotions, performance review)
+- Veterinary and health records
+
+Designed for equestrian centers, riders and stable managers.
     """,
     'author': 'Alessandro Pollice',
-    'website': 'www.lesecuriesdelm.be',
-    'category': 'Equestrian',
-    'version': '1.0',
-    'depends': ['base', 'mail', 'stock', 'mrp','sale'],
-
+    'website': 'https://www.lesecuriesdelm.be',  # change if needed
+    'category': 'Industry',
+    'depends': ['base', 'mail', 'stock', 'mrp', 'sale'],
     'data': [
-
         'security/res_group.xml',
         'security/ir.model.access.csv',
 
@@ -39,8 +38,7 @@
         'views/stable_view_dentist.xml',
         'views/stable_view_farrier.xml',
         'views/stable_view_veterinary.xml',
-        #'views/stable_view_training.xml',
-
+        # 'views/stable_view_training.xml',
     ],
     'license': 'LGPL-3',
     'installable': True,

@@ -3,12 +3,13 @@ from odoo import models, fields, api
 
 class StableCompetition(models.Model):
     _name = 'stable.competition'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Equestrian Competition'
     _order = 'date desc'
 
     # Date and location of the competition
-    date = fields.Date("Date", required=True)
-    location = fields.Char("Location")
+    date = fields.Date("Date", required=True, tracking=True)
+    location = fields.Char("Location", tracking=True)
 
     # Competition level (e.g., Club, Amateur, Pro, International)
     level = fields.Selection([
@@ -38,9 +39,9 @@ class StableCompetition(models.Model):
         ('more', 'More'),
         ('eliminated', 'Eliminated'),
         ('dns', 'Did not start'),
-    ], string="Result")
+    ], string="Result", tracking=True)
     ranking = fields.Integer("Ranking")
-    penalty_points = fields.Float("Penalty points", help="Total penalty points")
+    penalty_points = fields.Float("Penalty points", help="Total penalty points", tracking=True)
     prize_money = fields.Float("Prize won (€)")
     time = fields.Float("Time (s)", help="Time achieved if relevant")
 
@@ -51,7 +52,7 @@ class StableCompetition(models.Model):
         ('tired', 'Tired'),
         ('motivated', 'Motivated'),
         ('frustrated', 'Frustrated'),
-    ], string="Emotion felt")
+    ], string="Emotion felt", tracking=True)
     performance_review = fields.Text("Performance analysis")
     improvements = fields.Text("Points to improve")
     more_info = fields.Text("Additional information")
@@ -82,5 +83,3 @@ class StableCompetition(models.Model):
                 )
 
         return competitions
-
-    
