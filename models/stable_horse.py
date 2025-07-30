@@ -84,7 +84,7 @@ class StableHorses(models.Model):
 
     # Linked records for health, feeding, and competitions
     competition_ids = fields.One2many('stable.competition', 'horse_id', string="Competition History")
-    vaccins_ids = fields.One2many('stable.vaccins', 'horse_id', string="Vaccination Records")
+    vaccins_ids = fields.One2many('stable.vaccins', 'horse_id', string="Vaccination Records", stat_button=False)
     osteopath_ids = fields.One2many('stable.osteopath', 'horse_id', string="Osteopath Visits")
     dentist_ids = fields.One2many('stable.dentist', 'horse_id', string="Dental Records")
     farrier_ids = fields.One2many('stable.farrier', 'horse_id', string="Farrier Records")

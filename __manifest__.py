@@ -17,7 +17,7 @@ Designed for equestrian centers, riders and stable managers.
     'author': 'Alessandro Pollice',
     'website': 'https://www.lesecuriesdelm.be',  # change if needed
     'category': 'Industry',
-    'depends': ['base', 'mail', 'stock', 'mrp', 'sale'],
+    'depends': ['base', 'mail'],
     'data': [
         'security/res_group.xml',
         'security/ir.model.access.csv',
@@ -28,10 +28,8 @@ Designed for equestrian centers, riders and stable managers.
         'data/competition_search_data.xml',
         'data/cron_data.xml',
         'data/dentist_data.xml',
-
         'views/reports/horse_report.xml',
         'reports/report.xml',
-
         'views/horse_views.xml',
         'views/competition_views.xml',
         'views/competition_search_views.xml',

@@ -5,7 +5,7 @@ It helps track your horses' essential data, organize competitions, manage feedin
 
 ---
 
-## 🚀 Features
+##  Features
 
 ### 🐎 Horse Management
 - Complete horse profiles (age, sex, breed, coat, height, weight)
