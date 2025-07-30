@@ -8,5 +8,5 @@ from . import (stable_horse,
                stable_farrier,
                stable_veterinary,
                stable_horse_tag,
-                stable_training,
+               stable_training,
                )
