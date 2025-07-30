@@ -53,7 +53,7 @@ class StableFarrier(models.Model):
     # Additional notes for follow-up or context
     notes = fields.Text("Additional Notes")
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         record = super().create(vals)
         if record.horse_id:

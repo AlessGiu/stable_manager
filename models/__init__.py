@@ -1,5 +1,6 @@
 from . import (stable_horse,
                stable_competition,
+               stable_competition_search,
                stable_health,
                mrp_production,
                stable_vaccins,
@@ -8,4 +9,5 @@ from . import (stable_horse,
                stable_farrier,
                stable_veterinary,
                stable_horse_tag,
+               stable_training,
                )

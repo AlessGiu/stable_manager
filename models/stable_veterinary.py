@@ -51,15 +51,17 @@ class StableVeterinary(models.Model):
     insurance_covered = fields.Boolean(string="Covered by Insurance")
     notes = fields.Text(string="Additional Notes")
 
-    @api.model
-    def create(self, vals):
-        record = super().create(vals)
-        if record.horse_id:
-            record.horse_id.message_post(
-                body=f"New medication prescribed for {record.horse_id.name} "
-                     f"on {record.visit_date}. Medication: {record. medication_ids or 'N/A'}. "
-            )
-        return record
+    @api.model_create_multi
+    def create(self, vals_list):
+        records = super().create(vals_list)
+        for record in records:
+            if record.horse_id:
+                medication_names = record.medication_ids.mapped('name') if record.medication_ids else 'N/A'
+                record.horse_id.message_post(
+                    body=f"New medication prescribed for {record.horse_id.name} "
+                         f"on {record.visit_date}. Medication: {medication_names}."
+                )
+        return records
 
 
 class StableVeterinaryMedication(models.Model):

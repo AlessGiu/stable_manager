@@ -1,52 +1,98 @@
-🐎 Stable Manager – Odoo Module
-Stable Manager is an Odoo module developed as part of my Python/Odoo developer training.
-It aims to help horse stable managers efficiently handle their day-to-day operations, such as managing horses, rations, employees, and scheduling tasks using Kanban and Gantt views.
+# 🐴 Stable Manager - Odoo Equestrian Management Module
 
-📦 Module Features
-🐴 Horse Management
-Store details about horses (name, SIRE number, gender, date of birth, etc.)
+**Stable Manager** is a complete equestrian management module for Odoo, designed for horse owners, riders, stable managers, and equestrian centers.  
+It helps track your horses' essential data, organize competitions, manage feeding routines, and ensure up-to-date veterinary care.
 
-🥕 Feeding Rations
-Assign and track rations for each horse with detailed quantity and timing
+---
 
-📅 Employee & Task Scheduling
-Plan and assign stable tasks to employees using Kanban and Gantt views
+## 🚀 Features
 
-🔔 Activity Tracking
-Integrated with Odoo’s chatter to follow up on horse-related actions
+### 🐎 Horse Management
+- Complete horse profiles (age, sex, breed, coat, height, weight)
+- SIRE number, microchip status, photo
+- Owner assignment
+- Automatic age calculation
+- Smart dashboard with "In Competition" ribbon and statistical buttons
 
-📊 Dashboards & Smart Buttons
-Easy access to statistics and related records
+### 🧾 Feeding & Nutrition
+- Link horses to feeding plans (Odoo MRP compatibility)
+- Track feed stock through Odoo Inventory
 
-----------------------------------------------------------------------
-🔧 Technical Details
-Odoo Version: 18
+### 🏆 Competition Tracking
+- Log competition date, level, discipline, result, penalties, time
+- Emotional feedback, performance review, improvement notes
+- Attach photos or documents
+- View yearly statistics
+- Competitions automatically linked to horses with activity messages
 
-Module Name: stable_manager
+### 🩺 Health & Care
+- Veterinary, osteopathy, dentistry, farrier, vaccines
+- History per horse
+- Tabs for quick access to medical data
 
-Dependencies: base, mail, web, contact
+### 📁 Reporting & Attachments
+- Export horse profile as PDF
+- Upload competition media and veterinary documents
 
-----------------------------------------------------------------------
-👨‍💻 Developer Notes
-This module was started during the third month of my 6-month Python/Odoo training.
-It is both an educational and real-world project — designed to help me practice:
+### 📊 User Interface
+- Clean form views with tabs and groups
+- Kanban, list, and form views for horses and competitions
+- Filters for in-competition horses, feed type, health status
 
-Python fundamentals (OOP, ORM, inheritance)
+---
 
-XML views and widgets
+## 📸 Screenshots
 
-Scheduled actions
+*(Add images to `static/description/` and uncomment in manifest)*
 
-Kanban views
+---
 
-Model relationships (One2many, Many2one)
+## 🔧 Installation
 
-Custom wizards and smart buttons
+1. Copy the `stable_manager/` folder into your Odoo `addons` directory.
+2. Make sure your database has the required modules installed:
+   - `base`, `mail`, `stock`, `mrp`, `sale`
+3. Restart Odoo and activate developer mode.
+4. Go to **Apps**, click **Update Apps List**, then install **Stable Manager**.
 
-The module is still a work in progress: many features remain to be implemented, but the structure is already taking shape.
+---
 
-----------------------------------------------------------------------
-I'm currently in my third month of training to become an Odoo developer, with a focus on backend logic and intuitive interface design.
-This project is especially meaningful to me: my partner runs a horse stable, and together we decided to digitize her stable management using Odoo.
-It’s both a personal and professional challenge, and a great opportunity to apply what I’m learning in a real-life context.
+## 🛠 Dependencies
+
+This module depends on the following Odoo core modules:
+
+- `base`
+- `mail`
+- `stock`
+- `mrp`
+- `sale`
+
+---
+
+## 🧪 Testing & Usage Tips
+
+- Use the included sample data to test the module.
+- Create a few horses, competitions, and vet records to explore features.
+- Use filters in kanban/list views to find horses with no microchip, or only those in competition.
+
+---
+
+## 🌐 Website & Support
+
+**Author:** Alessandro Pollice  
+**Website:** [lesecuriesdelm.be](https://www.lesecuriesdelm.be)  
+**Support:** support@lesecuriesdelm.be *(or customize this line)*
+
+---
+
+## 📄 License
+
+Licensed under the **LGPL-3.0**. See [LICENSE](https://www.gnu.org/licenses/lgpl-3.0.en.html) for details.
+
+---
+
+## ❤️ Contribution
+
+Pull requests, feedback and feature requests are welcome!  
+Feel free to fork this project, improve it or adapt it to your stable's specific needs.
 

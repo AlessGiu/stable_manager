@@ -1,13 +1,45 @@
 <odoo>
     <data noupdate="0">
 
-        <record id="competition_followay_2024" model="stable.competition">
+        <record id="competition_followay_1" model="stable.competition">
             <field name="horse_id" ref="stable_manager.horse_demo_followay"/>
-            <field name="date">2024-05-10</field>
+            <field name="date">2024-01-15</field>
             <field name="location">Lyon</field>
             <field name="discipline">cso</field>
             <field name="level">amateur</field>
             <field name="result">sf</field>
+        </record>
+        <record id="competition_followay_2" model="stable.competition">
+            <field name="horse_id" ref="stable_manager.horse_demo_followay"/>
+            <field name="date">2024-02-20</field>
+            <field name="location">Grenoble</field>
+            <field name="discipline">dressage</field>
+            <field name="level">pro</field>
+            <field name="result">sf</field>
+        </record>
+        <record id="competition_followay_3" model="stable.competition">
+            <field name="horse_id" ref="stable_manager.horse_demo_followay"/>
+            <field name="date">2024-03-18</field>
+            <field name="location">Annecy</field>
+            <field name="discipline">cso</field>
+            <field name="level">amateur</field>
+            <field name="result">4pts</field>
+        </record>
+        <record id="competition_followay_4" model="stable.competition">
+            <field name="horse_id" ref="stable_manager.horse_demo_followay"/>
+            <field name="date">2024-04-24</field>
+            <field name="location">Valence</field>
+            <field name="discipline">cso</field>
+            <field name="level">amateur</field>
+            <field name="result">sf</field>
+        </record>
+        <record id="competition_followay_5" model="stable.competition">
+            <field name="horse_id" ref="stable_manager.horse_demo_followay"/>
+            <field name="date">2024-06-05</field>
+            <field name="location">Mâcon</field>
+            <field name="discipline">cso</field>
+            <field name="level">pro</field>
+            <field name="result">eliminated</field>
         </record>
 
         <record id="competition_iliko_2024" model="stable.competition">
@@ -19,6 +51,48 @@
             <field name="result">4pts</field>
         </record>
 
+        <record id="competition_iliko_1" model="stable.competition">
+            <field name="horse_id" ref="stable_manager.horse_demo_iliko"/>
+            <field name="date">2024-01-30</field>
+            <field name="location">Tours</field>
+            <field name="discipline">cso</field>
+            <field name="level">pro</field>
+            <field name="result">4pts</field>
+        </record>
+        <record id="competition_iliko_2" model="stable.competition">
+            <field name="horse_id" ref="stable_manager.horse_demo_iliko"/>
+            <field name="date">2024-03-05</field>
+            <field name="location">Chartres</field>
+            <field name="discipline">cso</field>
+            <field name="level">amateur</field>
+            <field name="result">sf</field>
+        </record>
+        <record id="competition_iliko_3" model="stable.competition">
+            <field name="horse_id" ref="stable_manager.horse_demo_iliko"/>
+            <field name="date">2024-04-10</field>
+            <field name="location">Le Mans</field>
+            <field name="discipline">dressage</field>
+            <field name="level">pro</field>
+            <field name="result">sf</field>
+        </record>
+        <record id="competition_iliko_4" model="stable.competition">
+            <field name="horse_id" ref="stable_manager.horse_demo_iliko"/>
+            <field name="date">2024-05-20</field>
+            <field name="location">Orléans</field>
+            <field name="discipline">cso</field>
+            <field name="level">amateur</field>
+            <field name="result">8pts</field>
+        </record>
+        <record id="competition_iliko_5" model="stable.competition">
+            <field name="horse_id" ref="stable_manager.horse_demo_iliko"/>
+            <field name="date">2024-06-30</field>
+            <field name="location">Blois</field>
+            <field name="discipline">complet</field>
+            <field name="level">pro</field>
+            <field name="result">eliminated</field>
+        </record>
+
+
         <record id="competition_sherpa_2024" model="stable.competition">
             <field name="horse_id" ref="stable_manager.horse_demo_sherpa"/>
             <field name="date">2024-06-10</field>
@@ -27,6 +101,48 @@
             <field name="level">pro</field>
             <field name="result">sf</field>
         </record>
+
+        <record id="competition_sherpa_1" model="stable.competition">
+            <field name="horse_id" ref="stable_manager.horse_demo_sherpa"/>
+            <field name="date">2024-02-02</field>
+            <field name="location">Paris</field>
+            <field name="discipline">cso</field>
+            <field name="level">pro</field>
+            <field name="result">sf</field>
+        </record>
+        <record id="competition_sherpa_2" model="stable.competition">
+            <field name="horse_id" ref="stable_manager.horse_demo_sherpa"/>
+            <field name="date">2024-03-14</field>
+            <field name="location">Versailles</field>
+            <field name="discipline">dressage</field>
+            <field name="level">amateur</field>
+            <field name="result">sf</field>
+        </record>
+        <record id="competition_sherpa_3" model="stable.competition">
+            <field name="horse_id" ref="stable_manager.horse_demo_sherpa"/>
+            <field name="date">2024-04-25</field>
+            <field name="location">Evry</field>
+            <field name="discipline">cso</field>
+            <field name="level">pro</field>
+            <field name="result">4pts</field>
+        </record>
+        <record id="competition_sherpa_4" model="stable.competition">
+            <field name="horse_id" ref="stable_manager.horse_demo_sherpa"/>
+            <field name="date">2024-05-10</field>
+            <field name="location">Meaux</field>
+            <field name="discipline">complet</field>
+            <field name="level">pro</field>
+            <field name="result">dns</field>
+        </record>
+        <record id="competition_sherpa_5" model="stable.competition">
+            <field name="horse_id" ref="stable_manager.horse_demo_sherpa"/>
+            <field name="date">2024-06-28</field>
+            <field name="location">Melun</field>
+            <field name="discipline">cso</field>
+            <field name="level">amateur</field>
+            <field name="result">sf</field>
+        </record>
+
 
         <record id="competition_vagabond_2024" model="stable.competition">
             <field name="horse_id" ref="stable_manager.horse_demo_vagabond"/>
@@ -37,6 +153,48 @@
             <field name="result">dns</field>
         </record>
 
+        <record id="competition_vagabond_1" model="stable.competition">
+            <field name="horse_id" ref="stable_manager.horse_demo_vagabond"/>
+            <field name="date">2024-01-22</field>
+            <field name="location">Caen</field>
+            <field name="discipline">cso</field>
+            <field name="level">amateur</field>
+            <field name="result">sf</field>
+        </record>
+        <record id="competition_vagabond_2" model="stable.competition">
+            <field name="horse_id" ref="stable_manager.horse_demo_vagabond"/>
+            <field name="date">2024-03-10</field>
+            <field name="location">Rouen</field>
+            <field name="discipline">complet</field>
+            <field name="level">pro</field>
+            <field name="result">eliminated</field>
+        </record>
+        <record id="competition_vagabond_3" model="stable.competition">
+            <field name="horse_id" ref="stable_manager.horse_demo_vagabond"/>
+            <field name="date">2024-04-17</field>
+            <field name="location">Le Havre</field>
+            <field name="discipline">cso</field>
+            <field name="level">amateur</field>
+            <field name="result">8pts</field>
+        </record>
+        <record id="competition_vagabond_4" model="stable.competition">
+            <field name="horse_id" ref="stable_manager.horse_demo_vagabond"/>
+            <field name="date">2024-05-09</field>
+            <field name="location">Cherbourg</field>
+            <field name="discipline">cso</field>
+            <field name="level">pro</field>
+            <field name="result">dns</field>
+        </record>
+        <record id="competition_vagabond_5" model="stable.competition">
+            <field name="horse_id" ref="stable_manager.horse_demo_vagabond"/>
+            <field name="date">2024-06-27</field>
+            <field name="location">Bayeux</field>
+            <field name="discipline">cso</field>
+            <field name="level">amateur</field>
+            <field name="result">sf</field>
+        </record>
+
+
         <record id="competition_omaley_2024" model="stable.competition">
             <field name="horse_id" ref="stable_manager.horse_demo_omaley"/>
             <field name="date">2024-03-21</field>
@@ -46,6 +204,48 @@
             <field name="result">eliminated</field>
         </record>
 
+        <record id="competition_omaley_1" model="stable.competition">
+            <field name="horse_id" ref="stable_manager.horse_demo_omaley"/>
+            <field name="date">2024-01-12</field>
+            <field name="location">Nancy</field>
+            <field name="discipline">cso</field>
+            <field name="level">amateur</field>
+            <field name="result">eliminated</field>
+        </record>
+        <record id="competition_omaley_2" model="stable.competition">
+            <field name="horse_id" ref="stable_manager.horse_demo_omaley"/>
+            <field name="date">2024-02-18</field>
+            <field name="location">Metz</field>
+            <field name="discipline">dressage</field>
+            <field name="level">amateur</field>
+            <field name="result">sf</field>
+        </record>
+        <record id="competition_omaley_3" model="stable.competition">
+            <field name="horse_id" ref="stable_manager.horse_demo_omaley"/>
+            <field name="date">2024-03-29</field>
+            <field name="location">Strasbourg</field>
+            <field name="discipline">complet</field>
+            <field name="level">pro</field>
+            <field name="result">dns</field>
+        </record>
+        <record id="competition_omaley_4" model="stable.competition">
+            <field name="horse_id" ref="stable_manager.horse_demo_omaley"/>
+            <field name="date">2024-05-13</field>
+            <field name="location">Épinal</field>
+            <field name="discipline">cso</field>
+            <field name="level">amateur</field>
+            <field name="result">4pts</field>
+        </record>
+        <record id="competition_omaley_5" model="stable.competition">
+            <field name="horse_id" ref="stable_manager.horse_demo_omaley"/>
+            <field name="date">2024-06-24</field>
+            <field name="location">Colmar</field>
+            <field name="discipline">cso</field>
+            <field name="level">pro</field>
+            <field name="result">sf</field>
+        </record>
+
+
         <record id="competition_niceberry_2024" model="stable.competition">
             <field name="horse_id" ref="stable_manager.horse_demo_niceberry"/>
             <field name="date">2024-02-11</field>
@@ -54,6 +254,48 @@
             <field name="level">pro</field>
             <field name="result">sf</field>
         </record>
+
+        <record id="competition_niceberry_1" model="stable.competition">
+            <field name="horse_id" ref="stable_manager.horse_demo_niceberry"/>
+            <field name="date">2024-01-25</field>
+            <field name="location">Bordeaux</field>
+            <field name="discipline">cso</field>
+            <field name="level">pro</field>
+            <field name="result">sf</field>
+        </record>
+        <record id="competition_niceberry_2" model="stable.competition">
+            <field name="horse_id" ref="stable_manager.horse_demo_niceberry"/>
+            <field name="date">2024-03-01</field>
+            <field name="location">Pau</field>
+            <field name="discipline">dressage</field>
+            <field name="level">amateur</field>
+            <field name="result">sf</field>
+        </record>
+        <record id="competition_niceberry_3" model="stable.competition">
+            <field name="horse_id" ref="stable_manager.horse_demo_niceberry"/>
+            <field name="date">2024-04-16</field>
+            <field name="location">Bayonne</field>
+            <field name="discipline">cso</field>
+            <field name="level">pro</field>
+            <field name="result">4pts</field>
+        </record>
+        <record id="competition_niceberry_4" model="stable.competition">
+            <field name="horse_id" ref="stable_manager.horse_demo_niceberry"/>
+            <field name="date">2024-05-25</field>
+            <field name="location">Anglet</field>
+            <field name="discipline">complet</field>
+            <field name="level">pro</field>
+            <field name="result">dns</field>
+        </record>
+        <record id="competition_niceberry_5" model="stable.competition">
+            <field name="horse_id" ref="stable_manager.horse_demo_niceberry"/>
+            <field name="date">2024-06-22</field>
+            <field name="location">Dax</field>
+            <field name="discipline">cso</field>
+            <field name="level">amateur</field>
+            <field name="result">sf</field>
+        </record>
+
 
         <record id="competition_perry_2024" model="stable.competition">
             <field name="horse_id" ref="stable_manager.horse_demo_perry"/>

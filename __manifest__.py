@@ -1,43 +1,47 @@
 {
     'name': 'Stable Manager',
     'version': '1.0',
-    'summary': 'Gérez vos chevaux, rations, compétitions et stocks de nourriture',
+    'summary': 'Manage your horses, rations, competitions and feed inventory',
     'description': """
-        Module de gestion équestre complet.
-        Ce module permet de suivre les informations essentielles d'une écurie :
-        - Fiches chevaux (âge, race, etc.)
-        - Rations alimentaires journalières
-        - Stocks de nourriture
-        - Suivi des compétitions (résultats, émotions, performance)
+Complete equestrian management module for horse clubs and stables.
 
-        Destiné aux clubs équestres, cavaliers ou gestionnaires d’écuries.
+This module helps to manage essential operations in a stable:
+- Horse records (age, breed, sex, etc.)
+- Daily feeding plans and rations
+- Feed inventory and stock control
+- Competition tracking (results, emotions, performance review)
+- Veterinary and health records
+
+Designed for equestrian centers, riders and stable managers.
     """,
     'author': 'Alessandro Pollice',
-    'website': 'www.lesecuriesdelm.be',
-    'category': 'Equestrian',
-    'version': '1.0',
-    'depends': ['base', 'mail', 'stock', 'mrp'],
-
+    'website': 'https://www.lesecuriesdelm.be',  # change if needed
+    'category': 'Industry',
+    'depends': ['base', 'mail', 'stock', 'mrp', 'sale'],
     'data': [
+        'security/res_group.xml',
+        'security/ir.model.access.csv',
+
         'data/horses_data.xml',
         'data/vaccine_data.xml',
         'data/competition_data.xml',
+        'data/competition_search_data.xml',
+        'data/cron_data.xml',
         'data/dentist_data.xml',
-
-        'security/ir.model.access.csv',
 
         'views/reports/horse_report.xml',
         'reports/report.xml',
 
         'views/horse_views.xml',
         'views/competition_views.xml',
+        'views/competition_search_views.xml',
         'views/health_views.xml',
         'views/stable_view_vaccins.xml',
         'views/stable_view_osteopath.xml',
         'views/stable_view_dentist.xml',
         'views/stable_view_farrier.xml',
         'views/stable_view_veterinary.xml',
-
+        # 'views/stable_view_training.xml',
     ],
     'license': 'LGPL-3',
     'installable': True,

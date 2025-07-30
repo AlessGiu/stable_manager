@@ -24,6 +24,14 @@
             <field name="model">stable.competition</field>
             <field name="arch" type="xml">
                 <form>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="date" readonly="1"/>
+                            –
+                            <field name="result" readonly="1"/>
+                        </h1>
+                    </div>
+
                     <sheet>
                         <group>
                             <!-- Block 1: General Information -->
@@ -59,6 +67,8 @@
                         </group>
 
                     </sheet>
+                    <chatter/>
+
                 </form>
             </field>
         </record>

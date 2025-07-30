@@ -1,0 +1,371 @@
+<odoo>
+    <data>
+
+        <!-- Vue liste des recherches de compétitions -->
+        <record id="view_competition_search_list" model="ir.ui.view">
+            <field name="name">stable.competition.search.list</field>
+            <field name="model">stable.competition.search</field>
+            <field name="arch" type="xml">
+                <list string="Recherches de compétitions FFE">
+                    <field name="name"/>
+                    <field name="discipline" widget="badge"/>
+                    <field name="region"/>
+                    <field name="level"/>
+                    <field name="competition_count" string="Résultats"/>
+                    <field name="search_status" widget="badge" 
+                           decoration-success="search_status == 'completed'"
+                           decoration-warning="search_status == 'searching'"
+                           decoration-danger="search_status == 'error'"/>
+                    <field name="search_date"/>
+                    <field name="auto_search" widget="boolean_toggle"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Vue formulaire de recherche -->
+        <record id="view_competition_search_form" model="ir.ui.view">
+            <field name="name">stable.competition.search.form</field>
+            <field name="model">stable.competition.search</field>
+            <field name="arch" type="xml">
+                <form string="Recherche de compétitions FFE">
+                    <header>
+                        <button name="action_search_competitions" 
+                                type="object" 
+                                string="🔍 Lancer la recherche" 
+                                class="btn-primary"
+                                states="draft,completed,error"/>
+                        <field name="search_status" widget="statusbar" 
+                               statusbar_visible="draft,searching,completed"/>
+                    </header>
+                    
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" type="object" 
+                                    name="action_view_results" icon="fa-trophy"
+                                    attrs="{'invisible': [('competition_count', '=', 0)]}">
+                                <field name="competition_count" widget="statinfo" 
+                                       string="Compétitions trouvées"/>
+                            </button>
+                        </div>
+                        
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="ex: Recherche CSO Nord 2025"/>
+                            </h1>
+                        </div>
+                        
+                        <group>
+                            <group string="Critères de recherche">
+                                <field name="discipline" required="1"/>
+                                <field name="region"/>
+                                <field name="level"/>
+                            </group>
+                            <group string="Dates">
+                                <field name="date_from"/>
+                                <field name="date_to"/>
+                            </group>
+                        </group>
+                        
+                        <group string="Automatisation">
+                            <group>
+                                <field name="auto_search"/>
+                                <field name="last_auto_search" readonly="1" 
+                                       attrs="{'invisible': [('auto_search', '=', False)]}"/>
+                            </group>
+                            <group>
+                                <field name="notification_emails" 
+                                       attrs="{'invisible': [('auto_search', '=', False)]}"
+                                       placeholder="email1@example.com, email2@example.com"/>
+                            </group>
+                        </group>
+                        
+                        <group string="Résultats" attrs="{'invisible': [('search_status', '=', 'draft')]}">
+                            <group>
+                                <field name="search_date" readonly="1"/>
+                                <field name="competition_count" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="error_message" readonly="1" 
+                                       attrs="{'invisible': [('search_status', '!=', 'error')]}"/>
+                            </group>
+                        </group>
+                        
+                        <notebook attrs="{'invisible': [('competition_count', '=', 0)]}">
+                            <page name="results" string="Résultats de recherche">
+                                <field name="competition_ids" readonly="1">
+                                    <list editable="bottom">
+                                        <field name="interested" widget="boolean_toggle"/>
+                                        <field name="name"/>
+                                        <field name="location"/>
+                                        <field name="date_start"/>
+                                        <field name="date_end"/>
+                                        <field name="level"/>
+                                        <field name="organizer"/>
+                                        <field name="entry_deadline"/>
+                                        <button name="action_open_ffe_url" type="object" 
+                                                icon="fa-external-link" 
+                                                title="Ouvrir sur FFEcompet"
+                                                attrs="{'invisible': [('url', '=', False)]}"/>
+                                        <button name="action_create_competition_entry" type="object" 
+                                                icon="fa-plus" 
+                                                title="Créer une compétition"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Vue kanban des recherches -->
+        <record id="view_competition_search_kanban" model="ir.ui.view">
+            <field name="name">stable.competition.search.kanban</field>
+            <field name="model">stable.competition.search</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile">
+                    <field name="name"/>
+                    <field name="discipline"/>
+                    <field name="region"/>
+                    <field name="competition_count"/>
+                    <field name="search_status"/>
+                    <field name="search_date"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_card oe_kanban_global_click">
+                                <div class="o_kanban_record_top mb16">
+                                    <div class="o_kanban_record_headings">
+                                        <strong class="o_kanban_record_title">
+                                            <field name="name"/>
+                                        </strong>
+                                    </div>
+                                    <span class="fa fa-circle" 
+                                          t-attf-style="color: #{record.search_status.raw_value == 'completed' ? 'green' : 
+                                                                 record.search_status.raw_value == 'error' ? 'red' : 'orange'}"/>
+                                </div>
+                                <div class="o_kanban_record_body">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <span class="fa fa-trophy"/> <t t-esc="record.discipline.value"/>
+                                        </div>
+                                        <div class="col-6">
+                                            <span class="fa fa-map-marker"/> <t t-esc="record.region.value"/>
+                                        </div>
+                                    </div>
+                                    <div class="row mt8">
+                                        <div class="col-6">
+                                            <span class="fa fa-search"/> <t t-esc="record.competition_count.value"/> résultats
+                                        </div>
+                                        <div class="col-6">
+                                            <span class="fa fa-calendar"/> <t t-esc="record.search_date.value"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Vue liste des résultats de compétitions -->
+        <record id="view_competition_result_list" model="ir.ui.view">
+            <field name="name">stable.competition.result.list</field>
+            <field name="model">stable.competition.result</field>
+            <field name="arch" type="xml">
+                <list string="Résultats de recherche">
+                    <field name="interested" widget="boolean_toggle"/>
+                    <field name="name"/>
+                    <field name="location"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                    <field name="discipline" widget="badge"/>
+                    <field name="level"/>
+                    <field name="organizer"/>
+                    <field name="entry_deadline" 
+                           decoration-danger="entry_deadline and entry_deadline &lt; context_today()"/>
+                    <button name="action_open_ffe_url" type="object" 
+                            icon="fa-external-link" 
+                            title="Ouvrir sur FFEcompet"
+                            attrs="{'invisible': [('url', '=', False)]}"/>
+                    <button name="action_create_competition_entry" type="object" 
+                            icon="fa-plus" 
+                            title="Créer une compétition"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Vue formulaire des résultats -->
+        <record id="view_competition_result_form" model="ir.ui.view">
+            <field name="name">stable.competition.result.form</field>
+            <field name="model">stable.competition.result</field>
+            <field name="arch" type="xml">
+                <form string="Résultat de recherche">
+                    <header>
+                        <button name="action_open_ffe_url" type="object" 
+                                string="🔗 Ouvrir sur FFEcompet" 
+                                class="btn-primary"
+                                attrs="{'invisible': [('url', '=', False)]}"/>
+                        <button name="action_create_competition_entry" type="object" 
+                                string="➕ Créer une compétition" 
+                                class="btn-secondary"/>
+                        <button name="action_mark_interested" type="object" 
+                                string="⭐ Marquer comme intéressant" 
+                                attrs="{'invisible': [('interested', '=', True)]}"/>
+                        <button name="action_mark_interested" type="object" 
+                                string="⭐ Retirer de mes favoris" 
+                                attrs="{'invisible': [('interested', '=', False)]}"/>
+                    </header>
+                    
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        
+                        <group>
+                            <group string="Informations générales">
+                                <field name="location"/>
+                                <field name="organizer"/>
+                                <field name="discipline" widget="badge"/>
+                                <field name="level"/>
+                                <field name="interested" widget="boolean_toggle"/>
+                            </group>
+                            <group string="Dates importantes">
+                                <field name="date_start"/>
+                                <field name="date_end"/>
+                                <field name="entry_deadline" 
+                                       decoration-danger="entry_deadline and entry_deadline &lt; context_today()"/>
+                            </group>
+                        </group>
+                        
+                        <group string="Contact et informations">
+                            <field name="contact_info"/>
+                            <field name="url" widget="url"/>
+                            <field name="description"/>
+                        </group>
+                        
+                        <group string="Mes notes">
+                            <field name="notes" nolabel="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Vue recherche/filtre pour les recherches -->
+        <record id="view_competition_search_search" model="ir.ui.view">
+            <field name="name">stable.competition.search.search</field>
+            <field name="model">stable.competition.search</field>
+            <field name="arch" type="xml">
+                <search string="Rechercher">
+                    <field name="name"/>
+                    <field name="discipline"/>
+                    <field name="region"/>
+                    <separator/>
+                    <filter name="completed" string="Terminé" domain="[('search_status', '=', 'completed')]"/>
+                    <filter name="auto_search" string="Recherche automatique" domain="[('auto_search', '=', True)]"/>
+                    <filter name="error" string="En erreur" domain="[('search_status', '=', 'error')]"/>
+                    <separator/>
+                    <filter name="cso" string="CSO" domain="[('discipline', '=', 'cso')]"/>
+                    <filter name="dressage" string="Dressage" domain="[('discipline', '=', 'dressage')]"/>
+                    <separator/>
+                    <group expand="0" string="Grouper par">
+                        <filter name="group_discipline" string="Discipline" context="{'group_by': 'discipline'}"/>
+                        <filter name="group_region" string="Région" context="{'group_by': 'region'}"/>
+                        <filter name="group_status" string="Statut" context="{'group_by': 'search_status'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Vue recherche pour les résultats -->
+        <record id="view_competition_result_search" model="ir.ui.view">
+            <field name="name">stable.competition.result.search</field>
+            <field name="model">stable.competition.result</field>
+            <field name="arch" type="xml">
+                <search string="Rechercher">
+                    <field name="name"/>
+                    <field name="location"/>
+                    <field name="organizer"/>
+                    <separator/>
+                    <filter name="interested" string="Favoris" domain="[('interested', '=', True)]"/>
+                    <filter name="upcoming" string="À venir" domain="[('date_start', '>=', context_today())]"/>
+                    <filter name="this_month" string="Ce mois" 
+                            domain="[('date_start', '>=', context_today().replace(day=1)), 
+                                   ('date_start', '&lt;', (context_today().replace(day=1) + datetime.timedelta(days=32)).replace(day=1))]"/>
+                    <separator/>
+                    <filter name="cso" string="CSO" domain="[('discipline', '=', 'cso')]"/>
+                    <filter name="amateur" string="Amateur" domain="[('level', 'ilike', 'amateur')]"/>
+                    <filter name="club" string="Club" domain="[('level', 'ilike', 'club')]"/>
+                    <separator/>
+                    <group expand="0" string="Grouper par">
+                        <filter name="group_discipline" string="Discipline" context="{'group_by': 'discipline'}"/>
+                        <filter name="group_month" string="Mois" context="{'group_by': 'date_start:month'}"/>
+                        <filter name="group_organizer" string="Organisateur" context="{'group_by': 'organizer'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Actions pour les recherches -->
+        <record id="action_competition_search" model="ir.actions.act_window">
+            <field name="name">Recherche FFE</field>
+            <field name="res_model">stable.competition.search</field>
+            <field name="view_mode">kanban,list,form</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Créez votre première recherche de compétitions FFE !
+                </p>
+                <p>
+                    Recherchez automatiquement les compétitions CSO dans le Nord de la France, 
+                    en Normandie et en Île-de-France.
+                </p>
+            </field>
+        </record>
+
+        <!-- Action pour les résultats favoris -->
+        <record id="action_competition_results_favorites" model="ir.actions.act_window">
+            <field name="name">Compétitions favorites</field>
+            <field name="res_model">stable.competition.result</field>
+            <field name="view_mode">list,form</field>
+            <field name="domain">[('interested', '=', True)]</field>
+            <field name="context">{'search_default_upcoming': 1}</field>
+        </record>
+
+        <!-- Action pour voir les résultats depuis une recherche -->
+        <record id="action_view_search_results" model="ir.actions.act_window">
+            <field name="name">Résultats de recherche</field>
+            <field name="res_model">stable.competition.result</field>
+            <field name="view_mode">list,form</field>
+            <field name="context">{'search_default_upcoming': 1}</field>
+        </record>
+
+        <!-- Menu principal -->
+        <menuitem id="menu_competition_search_root" 
+                  name="Recherche FFE" 
+                  parent="base.menu_main"
+                  sequence="60"/>
+
+        <menuitem id="menu_competition_search" 
+                  name="Mes recherches" 
+                  parent="menu_competition_search_root"
+                  action="action_competition_search"
+                  sequence="10"/>
+
+        <menuitem id="menu_competition_favorites" 
+                  name="Mes favoris" 
+                  parent="menu_competition_search_root"
+                  action="action_competition_results_favorites"
+                  sequence="20"/>
+
+    </data>
+</odoo>
