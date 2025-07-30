@@ -25,6 +25,8 @@ Designed for equestrian centers, riders and stable managers.
         'data/horses_data.xml',
         'data/vaccine_data.xml',
         'data/competition_data.xml',
+        'data/competition_search_data.xml',
+        'data/cron_data.xml',
         'data/dentist_data.xml',
 
         'views/reports/horse_report.xml',
@@ -32,6 +34,7 @@ Designed for equestrian centers, riders and stable managers.
 
         'views/horse_views.xml',
         'views/competition_views.xml',
+        'views/competition_search_views.xml',
         'views/health_views.xml',
         'views/stable_view_vaccins.xml',
         'views/stable_view_osteopath.xml',
