@@ -34,7 +34,7 @@
 
     <!-- Action pour voir les lignes de ration -->
     <record id="action_stable_ration_line" model="ir.actions.act_window">
-        <field name="name">Lignes de ration</field>
+        <!--  <field name="name">Lignes de ration</field>-->
         <field name="res_model">stable.ration.line</field>
         <field name="view_mode">list,form</field>
     </record>
