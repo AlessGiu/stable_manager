@@ -9,7 +9,6 @@
                     <group>
                         <field name="product_tmpl_id"/>
 
-                        <field name="is_ration"/>
                         <field name="preparation_note"/>
                     </group>
                     <notebook>
@@ -19,6 +18,8 @@
                                     <field name="product_id"/>
                                     <field name="quantity"/>
                                     <field name="uom_id"/>
+                                    <field name="note"/>
+
                                 </list>
                             </field>
                         </page>
@@ -39,7 +40,6 @@
             <list>
                 <field name="product_tmpl_id"/>
                 <field name="horse_ids" widget="many2many"/>
-                <field name="is_ration"/>
             </list>
         </field>
     </record>

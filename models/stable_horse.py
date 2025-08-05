@@ -94,6 +94,7 @@ class StableHorses(models.Model):
     ration_id = fields.Many2one('stable.ration',
                                 string="Rations")
 
+    # Ration lines for the horse, linked to the ration
     ration_line_ids = fields.One2many(
         related='ration_id.ration_line_ids',
         string='Lignes de ration'

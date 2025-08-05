@@ -18,3 +18,5 @@ class StableRationLine(models.Model):
     uom_id = fields.Many2one('uom.uom',
                              string="Unit",
                              required=True)
+
+    note= fields.Text(string="Note")

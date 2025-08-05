@@ -25,6 +25,7 @@
                         <field name="product_id"/>
                         <field name="quantity"/>
                         <field name="uom_id"/>
+                        <field name="note"/>
                     </group>
                 </sheet>
             </form>

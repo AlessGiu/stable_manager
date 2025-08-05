@@ -21,7 +21,6 @@ class StableRation(models.Model):
     )
 
     preparation_note = fields.Text(string="Remarques / Préparation")
-    is_ration = fields.Boolean(string="Est une ration ?", default=True)
 
     ration_line_ids = fields.One2many(
         'stable.ration.line',
