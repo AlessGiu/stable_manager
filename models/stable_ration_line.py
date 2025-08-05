@@ -19,4 +19,14 @@ class StableRationLine(models.Model):
                              string="Unit",
                              required=True)
 
-    note= fields.Text(string="Note")
+    note = fields.Text(string="Note")
+
+    def open_ration_line_form(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': 'stable.ration.line',
+            'res_id': self.id,
+            'view_mode': 'form',
+            'target': 'new',  # modal
+        }
+
