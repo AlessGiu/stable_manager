@@ -91,8 +91,6 @@
                                 string="Print Profile"
                                 class="oe_highlight"
                                 icon="fa-print"/>
-
-
                     </header>
                     <sheet>
                         <!-- Ribbon: visually highlights horses in competition -->
@@ -133,13 +131,22 @@
                                 <field name="in_competition"/>
                                 <!--<field name="progress_bar" widget="progressbar"
                                        options="{'max_value': 100}"/> -->
+
                             </group>
                         </group>
 
                         <!-- Tabs: organize related records for easy access -->
                         <notebook>
                             <page string="Rations">
-                                <field name="ration_mrp_ids"/>
+                                <field name="ration_id"/>
+                                <field name="ration_line_ids" mode="kanban"
+                                       context="{'default_horse_id': id}">
+                                    <list editable="bottom">
+                                        <field name="product_id"/>
+                                        <field name="quantity"/>
+                                        <field name="uom_id"/>
+                                    </list>
+                                </field>
                             </page>
 
                             <page string="Competitions">
@@ -176,8 +183,7 @@
                 <kanban>
                     <templates>
                         <t t-name="kanban-box">
-                            <div class="o_kanban_box"
-                            >
+                            <div class="o_kanban_box">
                                 <!-- Horse image for quick identification -->
                                 <div class="o_kanban_image">
                                     <img t-att-src="kanban_image('stable.horse', 'image_1920', record.id.value)"
@@ -210,6 +216,50 @@
                 </kanban>
             </field>
         </record>
+
+        <!-- Action: opens the horse foods kanban view -->
+        <record id="view_stable_ration_line_kanban" model="ir.ui.view">
+            <field name="name">stable.ration.line.kanban</field>
+            <field name="model">stable.ration.line</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_global_click">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_card"
+                                 style="border: 1px solid #ddd; padding: 10px; border-radius: 8px; background-color: #fdfdfd; box-shadow: 1px 1px 4px rgba(0,0,0,0.05);">
+                                <!-- En-tête produit -->
+                                <div class="oe_kanban_details" style="margin-bottom: 8px;">
+                                    <strong style="font-size: 16px; color: #2c3e50;">
+                                        <field name="product_id"/>
+                                    </strong>
+                                </div>
+
+                                <!-- Quantité & UoM -->
+                                <div style="margin-bottom: 5px;">
+                                    <span style="font-weight: bold; color: #7f8c8d;">Quantité:</span>
+                                    <field name="quantity" class="oe_inline"/>
+                                    <field name="uom_id" class="oe_inline"/>
+                                </div>
+
+                                <!--Note -->
+                                <div style="margin-bottom: 5px;">
+                                    <span style="font-weight: bold; color: #7f8c8d;">Note:</span>
+                                    <field name="note" class="oe_inline"/>
+                                </div>
+
+
+                                <!-- Bouton ration liée (optionnel) -->
+                                <div style="margin-top: 10px;">
+                                    <span style="font-size: 12px; color: #95a5a6;">Ration associée :</span>
+                                    <field name="ration_id"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
 
         <!-- Action: opens the horse management views -->
         <record id="open_view_horses" model="ir.actions.act_window">

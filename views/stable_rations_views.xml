@@ -1,0 +1,65 @@
+<odoo>
+    <!-- Vue formulaire ration -->
+    <record id="view_stable_ration_form" model="ir.ui.view">
+        <field name="name">stable.ration.form</field>
+        <field name="model">stable.ration</field>
+        <field name="arch" type="xml">
+            <form string="Ration Cheval">
+                <sheet>
+                    <group>
+                        <field name="product_tmpl_id"/>
+
+                        <field name="preparation_note"/>
+                    </group>
+                    <notebook>
+                        <page string="Lignes d'aliments">
+                            <field name="ration_line_ids">
+                                <list editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="quantity"/>
+                                    <field name="uom_id"/>
+                                    <field name="note"/>
+
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Horses">
+                            <field name="horse_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vue liste ration -->
+    <record id="view_stable_ration_list" model="ir.ui.view">
+        <field name="name">stable.ration.list</field>
+        <field name="model">stable.ration</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="product_tmpl_id"/>
+                <field name="horse_ids" widget="many2many"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Action pour ouvrir les rations -->
+    <record id="action_stable_ration" model="ir.actions.act_window">
+        <field name="name">Rations</field>
+        <field name="res_model">stable.ration</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p>
+                Gère les rations alimentaires types pour les chevaux.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu
+    <menuitem id="menu_stable_ration"
+              name="Rations journalières"
+              parent="menu_stable"
+              action="action_stable_ration"/>
+              -->
+</odoo>
