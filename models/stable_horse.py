@@ -38,6 +38,18 @@ class StableHorses(models.Model):
         ("appaloosa", "Appaloosa"),
     ], string="Coat")
 
+    race = fields.Selection([
+        ('selle_francais', 'Selle Français'),
+        ('anglo_arabe', 'Anglo-Arabe'),
+        ('pur_sang', 'Pur-Sang'),
+        ('appaloosa', 'Appaloosa'),
+        ('arabe', 'Arabe'),
+        ('lusitanien', 'Lusitanien'),
+        ('haflinger', 'Haflinger'),
+        ('poney', 'Poney'),
+        ('autre', 'Autre'),
+    ], string="Race")
+
     taille = fields.Integer("Height (cm)", required=True)
     poids = fields.Integer("Weight (kg)", required=True)
 

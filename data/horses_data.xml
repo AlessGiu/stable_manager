@@ -25,7 +25,7 @@
             <field name="robe">gris</field>
             <field name="type_pension">work</field>
             <field name="taille">160</field>
-            <field name="race">pony</field>
+            <field name="race">poney</field>
             <field name="poids">520</field>
             <field name="puce_elec">1</field>
             <field name="in_competition">0</field>
@@ -70,7 +70,7 @@
             <field name="robe">bai</field>
             <field name="type_pension">classic</field>
             <field name="taille">148</field>
-            <field name="race">pony</field>
+            <field name="race">poney</field>
             <field name="poids">480</field>
             <field name="puce_elec">1</field>
             <field name="in_competition">0</field>
