@@ -6,21 +6,22 @@ from odoo.exceptions import ValidationError
 class StableHorses(models.Model):
     _name = 'stable.horse'
     _description = 'Horse'
-    _inherit = 'mail.thread', 'mail.activity.mixin'  # Enables communication and activity tracking
+    _inherit = ['mail.thread', 'mail.activity.mixin']  # Enables communication and activity tracking
 
-    # Main identity fields for each horse
+    # === Identity ===
     name = fields.Char("Horse Name", required=True)
-    owner_id = fields.Many2one('res.partner', string="Owner", tracking=True)  # Owner of the horse
+    owner_id = fields.Many2one('res.partner', string="Owner", tracking=True)
     sireno = fields.Char("SIRE Number")
     sexe = fields.Selection([
         ("hongre", "Gelding"),
         ("etalon", "Stallion"),
-        ("jument", "Mare")])
+        ("jument", "Mare")
+    ], string="Sex")
 
     birth_date = fields.Date("Birth Date")
-    age = fields.Integer("Age", compute='_compute_age', store=True)  # Automatically calculated from birth date
+    age = fields.Integer("Age", compute='_compute_age', store=True)
 
-    # Physical characteristics
+    # === Physical Characteristics ===
     robe = fields.Selection([
         ("alezan", "Chestnut"),
         ("bai", "Bay"),
@@ -37,52 +38,33 @@ class StableHorses(models.Model):
         ("appaloosa", "Appaloosa"),
     ], string="Coat")
 
-    type_pension = fields.Selection([
-        ("classic", "Classic"),
-        ("work", "Work"),
-        ("consignment", "Consignment"),
-        ("breaking", "Breaking"),
-        ("personnal", "Personal")
-    ], tracking=True, default="classic", string="Pension Type")  # Type of boarding
-
     taille = fields.Integer("Height (cm)", required=True)
-    race = fields.Selection([
-        ("selle_francais", "Selle Français"),
-        ("lusitano", "Lusitano"),
-        ("kwpn", "KWPN"),
-        ("hanoverian", "Hanoverian"),
-        ("trakehner", "Trakehner"),
-        ("holsteiner", "Holsteiner"),
-        ("irish_sport_horse", "Irish Sport Horse"),
-        ("oldenburg", "Oldenburg"),
-        ("andalusian", "Andalusian"),
-        ("arabian", "Arabian"),
-        ("friesian", "Friesian"),
-        ("paint", "Paint Horse"),
-        ("quarter", "Quarter Horse"),
-        ("connemara", "Connemara"),
-        ("haflinger", "Haflinger"),
-        ("pony", "Pony"),
-        ("thoroughbred", "Thoroughbred"),
-        ("warmblood", "Warmblood"),
-    ], string="Breed")
-
     poids = fields.Integer("Weight (kg)", required=True)
+
     puce_elec = fields.Boolean(
         default=True,
         string="Microchipped",
         help="Indicates whether the horse has an electronic chip."
     )
 
-    image_1920 = fields.Image("Image", max_width=1920, max_height=1920)  # Horse photo
+    image_1920 = fields.Image("Image", max_width=1920, max_height=1920)
 
-    in_competition = fields.Boolean("In Competition?", default=False, tracking=True)  # Competition status
+    # === Boarding & Competition ===
+    type_pension = fields.Selection([
+        ("classic", "Classic"),
+        ("work", "Work"),
+        ("consignment", "Consignment"),
+        ("breaking", "Breaking"),
+        ("personnal", "Personal")
+    ], string="Boarding Type", tracking=True, default="classic")
+
+    in_competition = fields.Boolean("In Competition?", default=False, tracking=True)
     competition_this_year = fields.Integer(
         string="Competitions This Year",
         compute='_compute_competition_this_year',
     )
 
-    # Linked records for health, feeding, and competitions
+    # === Linked Records ===
     competition_ids = fields.One2many('stable.competition', 'horse_id', string="Competition History")
     vaccins_ids = fields.One2many('stable.vaccins', 'horse_id', string="Vaccination Records", stat_button=False)
     osteopath_ids = fields.One2many('stable.osteopath', 'horse_id', string="Osteopath Visits")
@@ -90,19 +72,18 @@ class StableHorses(models.Model):
     farrier_ids = fields.One2many('stable.farrier', 'horse_id', string="Farrier Records")
     veterinary_ids = fields.One2many('stable.veterinary', 'horse_id', string="Veterinary Records")
 
-    # Ration management relations
-    ration_id = fields.Many2one('stable.ration',
-                                string="Rations")
-
-    # Ration lines for the horse, linked to the ration
+    # === Feeding / Rations ===
+    ration_id = fields.Many2one('stable.ration', string="Ration")
     ration_line_ids = fields.One2many(
         related='ration_id.ration_line_ids',
-        string='Lignes de ration'
+        string="Ration Lines"
     )
 
-    # Automatically computes the age based on the birth date
+    # === Computed Fields ===
+
     @api.depends('birth_date')
     def _compute_age(self):
+        """Compute the horse's age from the birth date."""
         today = date.today()
         for record in self:
             if record.birth_date:
@@ -112,8 +93,8 @@ class StableHorses(models.Model):
             else:
                 record.age = 0
 
-    # Automatically computes the number of competitions this year
     def _compute_competition_this_year(self):
+        """Compute the number of competitions the horse has participated in during the current year."""
         current_year = date.today().year
         start_date = date(current_year, 1, 1)
         today = date.today()
@@ -124,16 +105,18 @@ class StableHorses(models.Model):
                 ('date', '<=', today)
             ])
 
-    # Constrains for birth date
+    # === Constraints ===
+
     @api.constrains('birth_date')
     def _check_birth_date(self):
+        """Ensure the birth date is not in the future."""
         for record in self:
             if record.birth_date and record.birth_date > date.today():
                 raise ValidationError("The birth date cannot be in the future.")
 
-    # Constrains for horse name
     @api.constrains('name')
     def _check_name(self):
+        """Validate the horse's name (presence, length, uniqueness)."""
         for record in self:
             if not record.name:
                 raise ValidationError("The horse name cannot be empty.")
@@ -144,18 +127,54 @@ class StableHorses(models.Model):
             if self.search_count([('name', '=', record.name)]) > 1:
                 raise ValidationError("This horse already exists.")
 
-    # Constrains for owner
     @api.constrains('owner_id')
     def _check_owner(self):
+        """Ensure the horse has an owner."""
         for record in self:
             if not record.owner_id:
-                raise ValidationError("Please select/create an owner for the horse.")
+                raise ValidationError("Please select or create an owner for the horse.")
 
-    # Constrains for physical characteristics
     @api.constrains('taille', 'poids')
     def _check_size_weight(self):
+        """Ensure that height and weight are both greater than zero."""
         for rec in self:
             if rec.taille <= 0:
                 raise ValidationError("Height must be greater than zero.")
             if rec.poids <= 0:
                 raise ValidationError("Weight must be greater than zero.")
+
+    # === Custom Actions ===
+
+    def action_add_ration_line(self):
+        """
+        Add a new ration line for the horse.
+
+        If no ration is linked to the horse, create one along with a product.template.
+        Then open the ration line form with the ration ID pre-filled.
+
+        Returns:
+            dict: Odoo action to open a modal form for stable.ration.line
+        """
+        self.ensure_one()
+
+        if not self.ration_id:
+            product_template = self.env['product.template'].create({
+                'name': f"Ration - {self.name}",
+                'type': 'consu',
+            })
+
+            ration = self.env['stable.ration'].create({
+                'product_tmpl_id': product_template.id,
+            })
+
+            self.ration_id = ration
+
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': 'stable.ration.line',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {
+                'default_ration_id': self.ration_id.id,
+            }
+        }
