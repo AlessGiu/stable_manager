@@ -1,0 +1,40 @@
+<odoo>
+    <data noupdate="1">
+
+        <!-- Exemple de recherche de compétitions CSO -->
+        <record id="search_cso_nord" model="stable.competition.search">
+            <field name="name">CSO Nord de la France 2025</field>
+            <field name="discipline">cso</field>
+            <field name="region">hauts-de-france</field>
+            <field name="level">amateur</field>
+            <field name="date_from" eval="(DateTime.now() + timedelta(days=7)).strftime('%Y-%m-%d')"/>
+            <field name="date_to" eval="(DateTime.now() + timedelta(days=90)).strftime('%Y-%m-%d')"/>
+            <field name="auto_search">False</field>
+            <field name="search_status">draft</field>
+        </record>
+
+        <!-- Exemple de recherche automatique -->
+        <record id="search_cso_auto" model="stable.competition.search">
+            <field name="name">Veille CSO Normandie (Automatique)</field>
+            <field name="discipline">cso</field>
+            <field name="region">normandie</field>
+            <field name="date_from" eval="DateTime.now().strftime('%Y-%m-%d')"/>
+            <field name="date_to" eval="(DateTime.now() + timedelta(days=120)).strftime('%Y-%m-%d')"/>
+            <field name="auto_search">True</field>
+            <field name="search_status">draft</field>
+            <field name="notification_emails">contact@stable-manager.com</field>
+        </record>
+
+        <!-- Recherche Île-de-France tous niveaux -->
+        <record id="search_idf_all" model="stable.competition.search">
+            <field name="name">Compétitions Île-de-France</field>
+            <field name="discipline">cso</field>
+            <field name="region">ile-de-france</field>
+            <field name="date_from" eval="DateTime.now().strftime('%Y-%m-%d')"/>
+            <field name="date_to" eval="(DateTime.now() + timedelta(days=60)).strftime('%Y-%m-%d')"/>
+            <field name="auto_search">False</field>
+            <field name="search_status">draft</field>
+        </record>
+
+    </data>
+</odoo>

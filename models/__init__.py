@@ -1,5 +1,6 @@
 from . import (stable_horse,
                stable_competition,
+               stable_competition_search,
                stable_health,
                mrp_production,
                stable_vaccins,
