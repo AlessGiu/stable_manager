@@ -9,4 +9,6 @@ from . import (stable_horse,
                stable_veterinary,
                stable_horse_tag,
                stable_training,
+               stable_rations,
+               stable_ration_line,
                )

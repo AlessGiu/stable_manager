@@ -33,3 +33,12 @@ access_stable_veterinary_medication_admin,access_stable_veterinary_medication_ad
 
 access_stable_training,access_stable_training,model_stable_training,stable_manager.group_stagiaire,1,0,0,0
 
+
+access_stable_ration,access_stable_ration,model_stable_ration,base.group_system,1,1,1,1
+access_stable_ration_line,access_stable_ration_line,model_stable_ration_line,base.group_system,1,1,1,1
+
+access_stable_ration_stagiaire,access_stable_ration_stagiaire,model_stable_ration,stable_manager.group_stagiaire,1,0,0,0
+access_stable_ration_line_stagiaire,access_stable_ration_line_stagiaire,model_stable_ration_line,stable_manager.group_stagiaire,1,0,0,0
+
+access_stable_ration_admin,access_stable_ration_admin,model_stable_ration,stable_manager.group_stable_manager_admin,1,1,1,1
+access_stable_ration_line_admin,access_stable_ration_line_admin,model_stable_ration_line,stable_manager.group_stable_manager_admin,1,1,1,1

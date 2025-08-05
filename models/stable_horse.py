@@ -90,9 +90,13 @@ class StableHorses(models.Model):
     farrier_ids = fields.One2many('stable.farrier', 'horse_id', string="Farrier Records")
     veterinary_ids = fields.One2many('stable.veterinary', 'horse_id', string="Veterinary Records")
 
-    ration_mrp_ids = fields.Many2many(
-        'mrp.production',
-        string="Rations MRP"
+    # Ration management relations
+    ration_id = fields.Many2one('stable.ration',
+                                string="Rations")
+
+    ration_line_ids = fields.One2many(
+        related='ration_id.ration_line_ids',
+        string='Lignes de ration'
     )
 
     # Automatically computes the age based on the birth date
