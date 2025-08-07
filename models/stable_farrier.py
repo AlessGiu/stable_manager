@@ -4,6 +4,8 @@ from odoo import models, fields, api
 class StableFarrier(models.Model):
     _name = 'stable.farrier'
     _description = "Farrier Visit"
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+
 
     # Link to the horse receiving farrier care
     horse_id = fields.Many2one('stable.horse',

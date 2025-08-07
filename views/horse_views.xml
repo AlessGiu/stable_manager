@@ -201,7 +201,7 @@
             <field name="arch" type="xml">
                 <kanban>
                     <templates>
-                        <t t-name="kanban-box">
+                        <t t-name="kanban-card">
                             <div class="o_kanban_box">
                                 <div class="o_kanban_image">
                                     <img t-att-src="kanban_image('stable.horse', 'image_1920', record.id.value)"
@@ -236,7 +236,7 @@
             <field name="arch" type="xml">
                 <kanban class="o_kanban_global_click">
                     <templates>
-                        <t t-name="kanban-box">
+                        <t t-name="kanban-card">
                             <div class="oe_kanban_card"
                                  style="border: 1px solid #ddd; padding: 10px; border-radius: 8px; background-color: #fdfdfd; box-shadow: 1px 1px 4px rgba(0,0,0,0.05);">
                                 <div class="oe_kanban_details" style="margin-bottom: 8px;">
@@ -258,9 +258,12 @@
                                     <field name="ration_id"/>
                                 </div>
                                 <div style="display: flex; justify-content: space-between; margin-top: 10px;">
-                                    <a type="object" name="unlink" class="btn btn-danger btn-sm">Delete</a>
-                                    <a type="object" name="open_ration_line_form" class="btn btn-primary btn-sm">Edit
+                                    <a type="object" name="unlink" class="btn btn-danger btn-sm" role="button">Delete
                                     </a>
+                                    <a type="object" name="open_ration_line_form" class="btn btn-primary btn-sm"
+                                       role="button">Edit
+                                    </a>
+
                                 </div>
                             </div>
                         </t>

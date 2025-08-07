@@ -5,6 +5,8 @@ from odoo import models, fields
 class StableHorseTag(models.Model):
     _name = 'stable.horse.tag'
     _description = 'Competition Tag'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+
 
     # Name of the tag (e.g., "Show Jumping", "Dressage")
     name = fields.Char("Tag Name",
