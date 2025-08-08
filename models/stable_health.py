@@ -5,6 +5,8 @@ from odoo import models, fields
 class StableHealth(models.Model):
     _name = 'stable.health'
     _description = 'Horse Health'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+
 
     # Link to the horse concerned by this health record
     horse_id = fields.Many2one('stable.horse', string="Horse")
