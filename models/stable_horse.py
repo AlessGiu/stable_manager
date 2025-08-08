@@ -1,6 +1,7 @@
 from odoo import models, fields, api
 from datetime import date
 from odoo.exceptions import ValidationError
+import base64
 
 
 class StableHorses(models.Model):
@@ -155,6 +156,7 @@ class StableHorses(models.Model):
             if rec.poids <= 0:
                 raise ValidationError("Weight must be greater than zero.")
 
+    @api.model
     # === Custom Actions ===
 
     def action_add_ration_line(self):
@@ -180,6 +182,12 @@ class StableHorses(models.Model):
             })
 
             self.ration_id = ration
+
+            self.message_post(
+                body=f"A new ration has been created for {self.name}.",
+                message_type='notification',
+                subtype_xmlid='mail.mt_note'
+            )
 
         return {
             'type': 'ir.actions.act_window',
