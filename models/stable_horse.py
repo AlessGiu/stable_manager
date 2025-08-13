@@ -156,8 +156,7 @@ class StableHorses(models.Model):
             if rec.poids <= 0:
                 raise ValidationError("Weight must be greater than zero.")
 
-    @api.model
-    # === Custom Actions ===
+   # === Custom Actions ===
 
     def action_add_ration_line(self):
         """
