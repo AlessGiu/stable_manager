@@ -3,6 +3,8 @@ from odoo import models, fields, api
 class StableTraining(models.Model):
     _name = 'stable.training'
     _description = 'Horses training sessions'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+
 
     horse_id = fields.Many2one('stable.horse', string="Horse", required=True, tracking=True)
     start_date = fields.Datetime("Start Date", required=True, tracking=True)

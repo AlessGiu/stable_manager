@@ -35,7 +35,7 @@
             </field>
         </record>
 
-        <!-- === ACTION: Open form to create a ration line === -->
+        <!-- === ACTIONS === -->
         <record id="action_add_ration_line" model="ir.actions.act_window">
             <field name="name">Add a ration line</field>
             <field name="res_model">stable.ration.line</field>
@@ -43,7 +43,6 @@
             <field name="target">new</field>
         </record>
 
-        <!-- === ACTION: Open competition records for this horse (current year) === -->
         <record id="action_stable_competition_this_year" model="ir.actions.act_window">
             <field name="name">Competitions this year</field>
             <field name="res_model">stable.competition</field>
@@ -51,7 +50,6 @@
             <field name="domain">[('horse_id', '=', active_id)]</field>
         </record>
 
-        <!-- === ACTION: Open vaccination records for this horse (current year) === -->
         <record id="action_stable_vaccin_this_year" model="ir.actions.act_window">
             <field name="name">Vaccinations</field>
             <field name="res_model">stable.vaccins</field>
@@ -59,54 +57,33 @@
             <field name="domain">[('horse_id', '=', active_id)]</field>
         </record>
 
-        <!-- === FORM VIEW: Detailed horse profile with organized tabs === -->
+        <!-- === FORM VIEW: Horse === -->
         <record id="view_horse_form" model="ir.ui.view">
             <field name="name">stable_horse_form</field>
             <field name="model">stable.horse</field>
             <field name="arch" type="xml">
                 <form>
-
                     <header>
-                        <!-- Stat button: competitions this year -->
-                        <button name="%(action_stable_competition_this_year)d"
-                                type="action"
-                                class="oe_stat_button"
-                                icon="fa-trophy">
+                        <button name="%(action_stable_competition_this_year)d" type="action"
+                                class="oe_stat_button" icon="fa-trophy">
                             <field name="competition_this_year" widget="statinfo"/>
                         </button>
-
-                        <!-- Stat button: vaccinations this year -->
-                        <button name="%(action_stable_vaccin_this_year)d"
-                                type="action"
-                                class="oe_stat_button"
-                                icon="fa-medkit">
+                        <button name="%(action_stable_vaccin_this_year)d" type="action"
+                                class="oe_stat_button" icon="fa-medkit">
                             <field name="vaccins_ids" widget="statinfo"/>
                         </button>
-
-                        <!-- Print button -->
-                        <button name="%(action_report_horse)d"
-                                type="action"
-                                string="Print Profile"
-                                class="oe_highlight"
-                                icon="fa-print"/>
+                        <button name="%(action_report_horse)d" type="action"
+                                string="Print Profile" class="oe_highlight" icon="fa-print"/>
                     </header>
 
                     <sheet>
-
-                        <!-- Ribbon: indicates competition status -->
-                        <widget name="web_ribbon"
-                                title="In Competition"
-                                bg_color="bg-primary"
+                        <widget name="web_ribbon" title="In Competition" bg_color="bg-primary"
                                 invisible="not in_competition"/>
 
-                        <!-- Title block -->
                         <div class="oe_title">
-                            <h1>
-                                <field name="name" placeholder="Horse's name"/>
-                            </h1>
+                            <h1><field name="name" placeholder="Horse's name"/></h1>
                         </div>
 
-                        <!-- Identity / physical / boarding info -->
                         <group col="3">
                             <group string="Identity">
                                 <field name="sireno" placeholder="Official SIRE number"/>
@@ -115,17 +92,14 @@
                                 <field name="sexe"/>
                                 <field name="race"/>
                                 <field name="image_1920" widget="image"
-                                       class="oe_avatar"
-                                       options="{'preview_image': 'image_1920'}"/>
+                                       class="oe_avatar" options="{'preview_image': 'image_1920'}"/>
                             </group>
-
                             <group string="Physical Characteristics">
                                 <field name="robe"/>
                                 <field name="taille"/>
                                 <field name="poids"/>
                                 <field name="puce_elec"/>
                             </group>
-
                             <group string="Status and Boarding">
                                 <field name="type_pension"/>
                                 <field name="owner_id"/>
@@ -133,68 +107,47 @@
                             </group>
                         </group>
 
-                        <!-- Tabs: show related records -->
                         <notebook>
-
-                            <!-- === TAB: Rations === -->
                             <page string="Rations">
                                 <group>
                                     <field name="ration_id" invisible="1"/>
-                                    <div class="d-flex align-items-center justify-content-between mb-2"
-                                         style="width: 100%;">
+                                    <div class="d-flex align-items-center justify-content-between mb-2">
                                         <div>
                                             <button name="action_add_ration_line"
-                                                    type="object"
-                                                    string="Add item"
+                                                    type="object" string="Add item"
                                                     class="btn btn-primary"/>
                                         </div>
                                     </div>
                                     <field name="ration_line_ids" mode="kanban"/>
                                 </group>
                             </page>
-
-                            <!-- === TAB: Competitions === -->
                             <page string="Competitions">
                                 <field name="competition_ids"/>
                             </page>
-
-                            <!-- === TAB: Vaccines === -->
                             <page string="Vaccines">
                                 <field name="vaccins_ids"/>
                             </page>
-
-                            <!-- === TAB: Osteopath === -->
                             <page string="Osteopath">
                                 <field name="osteopath_ids"/>
                             </page>
-
-                            <!-- === TAB: Dentist === -->
                             <page string="Dentist">
                                 <field name="dentist_ids"/>
                             </page>
-
-                            <!-- === TAB: Farrier === -->
                             <page string="Farrier">
                                 <field name="farrier_ids"/>
                             </page>
-
-                            <!-- === TAB: Veterinarian === -->
                             <page string="Veterinarian">
                                 <field name="veterinary_ids"/>
                             </page>
-
                         </notebook>
-
                     </sheet>
 
-                    <!-- Chatter widget -->
                     <chatter/>
-
                 </form>
             </field>
         </record>
 
-        <!-- === KANBAN VIEW: Visual horse cards === -->
+        <!-- === KANBAN VIEW: Horse === -->
         <record id="view_kanban_stable_horse" model="ir.ui.view">
             <field name="name">stable_horse_kanban</field>
             <field name="model">stable.horse</field>
@@ -205,22 +158,13 @@
                             <div class="o_kanban_box">
                                 <div class="o_kanban_image">
                                     <img t-att-src="kanban_image('stable.horse', 'image_1920', record.id.value)"
-                                         class="oe_kanban_avatar"
-                                         alt="Horse Image"/>
+                                         class="oe_kanban_avatar" alt="Horse Image"/>
                                 </div>
                                 <div class="o_kanban_details">
                                     <field name="name"/>
-                                    <div>
-                                        <field name="robe"/>
-                                        •
-                                        <field name="sexe"/>
-                                    </div>
-                                    <div>Owner:
-                                        <field name="owner_id"/>
-                                    </div>
-                                    <div>Pension type:
-                                        <field name="type_pension"/>
-                                    </div>
+                                    <div><field name="robe"/> • <field name="sexe"/></div>
+                                    <div>Owner: <field name="owner_id"/></div>
+                                    <div>Pension type: <field name="type_pension"/></div>
                                 </div>
                             </div>
                         </t>
@@ -229,7 +173,7 @@
             </field>
         </record>
 
-        <!-- === KANBAN VIEW: Ration line cards === -->
+        <!-- === KANBAN VIEW: Ration Line === -->
         <record id="view_stable_ration_line_kanban" model="ir.ui.view">
             <field name="name">stable.ration.line.kanban</field>
             <field name="model">stable.ration.line</field>
@@ -238,7 +182,8 @@
                     <templates>
                         <t t-name="kanban-box">
                             <div class="oe_kanban_card"
-                                 style="border: 1px solid #ddd; padding: 10px; border-radius: 8px; background-color: #fdfdfd; box-shadow: 1px 1px 4px rgba(0,0,0,0.05);">
+                                 style="border: 1px solid #ddd; padding: 10px; border-radius: 8px;
+                                        background-color: #fdfdfd; box-shadow: 1px 1px 4px rgba(0,0,0,0.05);">
                                 <div class="oe_kanban_details" style="margin-bottom: 8px;">
                                     <strong style="font-size: 16px; color: #2c3e50;">
                                         <field name="product_id"/>
@@ -258,9 +203,8 @@
                                     <field name="ration_id"/>
                                 </div>
                                 <div style="display: flex; justify-content: space-between; margin-top: 10px;">
-                                    <a type="object" name="unlink" class="btn btn-danger btn-sm">Delete</a>
-                                    <a type="object" name="open_ration_line_form" class="btn btn-primary btn-sm">Edit
-                                    </a>
+                                    <a type="object" name="unlink" class="btn btn-danger btn-sm" role="button">Delete</a>
+                                    <a type="object" name="open_ration_line_form" class="btn btn-primary btn-sm" role="button">Edit</a>
                                 </div>
                             </div>
                         </t>
@@ -269,28 +213,25 @@
             </field>
         </record>
 
-        <!-- === ACTION: Open horse management views === -->
+        <!-- === ACTION & MENU === -->
         <record id="open_view_horses" model="ir.actions.act_window">
             <field name="name">Horses</field>
             <field name="res_model">stable.horse</field>
             <field name="view_mode">kanban,list,form</field>
         </record>
 
-        <!-- === MAIN MENU: Root menu for stable management === -->
         <menuitem id="menu_stable"
                   name="Stable Management"
                   groups="stable_manager.group_stagiaire"
                   web_icon="stable_manager,static/description/icon.png"
                   sequence="10"/>
 
-        <!-- === MENU: Horse management === -->
         <menuitem id="stable_manager_menu_view"
                   name="Horses"
                   parent="menu_stable"
                   action="open_view_horses"
                   groups="stable_manager.group_stagiaire"/>
 
-        <!-- === MENU: Health-related sections === -->
         <menuitem id="menu_health"
                   name="Health"
                   parent="menu_stable"

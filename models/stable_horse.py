@@ -1,6 +1,7 @@
 from odoo import models, fields, api
 from datetime import date
 from odoo.exceptions import ValidationError
+import base64
 
 
 class StableHorses(models.Model):
@@ -38,6 +39,18 @@ class StableHorses(models.Model):
         ("appaloosa", "Appaloosa"),
     ], string="Coat")
 
+    race = fields.Selection([
+        ('selle_francais', 'Selle Français'),
+        ('anglo_arabe', 'Anglo-Arabe'),
+        ('pur_sang', 'Pur-Sang'),
+        ('appaloosa', 'Appaloosa'),
+        ('arabe', 'Arabe'),
+        ('lusitanien', 'Lusitanien'),
+        ('haflinger', 'Haflinger'),
+        ('poney', 'Poney'),
+        ('autre', 'Autre'),
+    ], string="Race")
+
     taille = fields.Integer("Height (cm)", required=True)
     poids = fields.Integer("Weight (kg)", required=True)
 
@@ -66,7 +79,7 @@ class StableHorses(models.Model):
 
     # === Linked Records ===
     competition_ids = fields.One2many('stable.competition', 'horse_id', string="Competition History")
-    vaccins_ids = fields.One2many('stable.vaccins', 'horse_id', string="Vaccination Records", stat_button=False)
+    vaccins_ids = fields.One2many('stable.vaccins', 'horse_id', string="Vaccination Records")
     osteopath_ids = fields.One2many('stable.osteopath', 'horse_id', string="Osteopath Visits")
     dentist_ids = fields.One2many('stable.dentist', 'horse_id', string="Dental Records")
     farrier_ids = fields.One2many('stable.farrier', 'horse_id', string="Farrier Records")
@@ -143,7 +156,7 @@ class StableHorses(models.Model):
             if rec.poids <= 0:
                 raise ValidationError("Weight must be greater than zero.")
 
-    # === Custom Actions ===
+   # === Custom Actions ===
 
     def action_add_ration_line(self):
         """
@@ -168,6 +181,12 @@ class StableHorses(models.Model):
             })
 
             self.ration_id = ration
+
+            self.message_post(
+                body=f"A new ration has been created for {self.name}.",
+                message_type='notification',
+                subtype_xmlid='mail.mt_note'
+            )
 
         return {
             'type': 'ir.actions.act_window',

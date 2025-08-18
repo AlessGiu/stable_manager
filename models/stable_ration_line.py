@@ -4,6 +4,8 @@ from odoo import models, fields
 class StableRationLine(models.Model):
     _name = 'stable.ration.line'
     _description = 'Ligne de ration (aliment)'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+
 
     quantity = fields.Float(string="Quantity", required=True)
 

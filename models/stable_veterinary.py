@@ -4,6 +4,8 @@ from odoo import models, fields, api
 class StableVeterinary(models.Model):
     _name = 'stable.veterinary'
     _description = "Global Veterinary Visit"
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+
 
     horse_id = fields.Many2one('stable.horse', string="Horse", required=True)
     vet_name = fields.Char(string="Veterinarian Name", required=True)
